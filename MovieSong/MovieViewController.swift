@@ -57,8 +57,10 @@ extension MovieViewController: MovieImageDelegate {
     func imageUpdate(withMovie movie: Movie) {
         switch movie.imageState {
         case .Loading(let image):
-            queue.addOperation(self.posterImageView.image = image, animation: .TransitionCrossDissolve)
+            print("Adding loading operation dude!!!")
+            queue.addOperation(self.posterImageView.image = image, animation: .TransitionCrossDissolve, duration: 10.0)
         case .NoImage(let image):
+            print("Add NO IMAGE OPERATION!!!!!!!!")
             queue.addOperation(self.posterImageView.image = image)
        case .Downloaded(let image):
         queue.addOperation(self.posterImageView.image = image)
@@ -69,32 +71,4 @@ extension MovieViewController: MovieImageDelegate {
     
 }
 
-final class Queue {
-    
-    typealias Operation = (() -> Void)
-    
-    var operations: [(Operation, UIViewAnimationOptions)] = []
-    var performingOperations = false
-    let imageView: UIImageView
-    
-    init(imageView: UIImageView) { self.imageView = imageView }
-    
-    func addOperation(@autoclosure(escaping) op: () -> Void, animation: UIViewAnimationOptions = .TransitionCurlDown) {
-        operations.append((op, animation))
-        if !performingOperations { performNextOperation() }
-    }
-    
-    func performNextOperation() {
-        guard !performingOperations else { return }
-        guard !operations.isEmpty else { return }
-        performingOperations = true
-        let (operation, animation) = operations.first!
-        
-        UIView.transitionWithView(imageView, duration: 2.2, options: animation, animations: operation) { _ in
-            _ = self.operations.removeFirst()
-            self.performingOperations = false
-            self.performNextOperation()
-        }
-    }
-    
-}
+

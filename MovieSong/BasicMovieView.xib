@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BasicMovieView" customModule="MovieSong" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="aYV-pG-cet"/>
+                <outlet property="moviePosterImageView" destination="6ah-gd-lsL" id="wbc-EX-AzT"/>
+                <outlet property="movieTitleLabel" destination="XCA-hM-3Yu" id="atf-Qb-qxN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="271" height="351"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8bI-z8-kYR">
+                    <rect key="frame" x="32" y="0.0" width="213" height="351"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Matrix" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCA-hM-3Yu">
+                            <rect key="frame" x="0.0" y="0.0" width="213" height="23"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="78L-se-i03">
+                            <rect key="frame" x="0.0" y="31" width="213" height="320"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LoadingPoster" translatesAutoresizingMaskIntoConstraints="NO" id="6ah-gd-lsL">
+                                    <rect key="frame" x="0.0" y="0.0" width="213" height="320"/>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="78L-se-i03" secondAttribute="height" multiplier="2:3" id="PBh-bM-wh2"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="8bI-z8-kYR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7gD-rC-kk7"/>
+                <constraint firstItem="8bI-z8-kYR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HZ2-2a-MLX"/>
+                <constraint firstItem="8bI-z8-kYR" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="QZz-fD-NbF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="331.5" y="529.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="LoadingPoster" width="300" height="450"/>
+    </resources>
+</document>

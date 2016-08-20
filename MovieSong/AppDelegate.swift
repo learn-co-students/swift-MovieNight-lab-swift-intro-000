@@ -15,6 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        let image = UIImage(imageLiteral: "Default")
+        let imageView = UIImageView(frame: window!.frame)
+        imageView.image = image
+        window!.insertSubview(imageView, atIndex: 0)
         // Override point for customization after application launch.
         return true
     }

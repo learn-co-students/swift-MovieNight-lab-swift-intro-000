@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-typealias JSONResponseDictionary = [String : String]
 
 enum MovieError: ErrorType {
     
@@ -34,6 +33,10 @@ final class MovieManager {
 
 // MARK: Search Methods
 
+typealias JSONResponseDictionary = [String : String]
+typealias JSONSearchDictionary = [String : [[String : String]]]
+
+
 extension MovieManager {
     
     func search(forFilm film: String, withHandler handler: (Movie?, MovieError?) -> Void) throws {
@@ -51,6 +54,9 @@ extension MovieManager {
                 guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
                     else { handler(nil, MovieError.BadJSONconversion("Unable to convert data to JSON")); return }
                 
+                
+                
+                
                 let movie = Movie(json: jsonResponse, movieImageDelegate: self.delegate)
                 
                 handler(movie, nil)
@@ -58,112 +64,32 @@ extension MovieManager {
             }.resume()
     }
     
-}
-
-
-
-enum MovieImageState {
-    
-    case Loading(UIImage)
-    case Downloaded(UIImage)
-    case NoImage(UIImage)
-    case Nothing
-    
-    init() {
-        self = .Nothing
-    }
-    
-    mutating func noImage() {
-        self = .NoImage(UIImage(imageLiteral: "MoviePoster"))
-    }
-    
-    mutating func loadingImage() {
-        self = .Loading(UIImage(imageLiteral: "LoadingPoster"))
-    }
-    
-}
-
-
-
-
-protocol MovieImageDelegate {
-    
-    func imageUpdate(withMovie movie: Movie)
-    
-}
-
-final class Movie {
-    
-    let title: String
-    let year: String
-    let rated: String
-    let released: String
-    let director: String
-    let posterURLString: String?
-    let imdbRating: String
-    let tomatoMeter: String
-    var attemptedToDownloadImage = false
-    var movieImageDelegate: MovieImageDelegate?
-    var imageState = MovieImageState() {
-        didSet {
-            movieImageDelegate?.imageUpdate(withMovie: self)
-        }
-    }
-    
-    init(json: JSONResponseDictionary, movieImageDelegate: MovieImageDelegate? = nil) {
-        title = json["Title"] ?? "No Title"
-        year = json["Year"] ?? "No Year"
-        rated = json["Rated"] ?? "No Rating"
-        released = json["Released"] ?? "No Release Date"
-        director = json["Director"] ?? "No Director"
-        posterURLString = json["Poster"]
-        imdbRating = json["imdbRating"] ?? "N/A"
-        tomatoMeter = json["tomatoMeter"] ?? "N/A"
-        self.movieImageDelegate = movieImageDelegate
-    }
-    
-}
-
-// MARK: Download Image Methods
-
-extension Movie {
-    
-    func downloadImage()  {
-        loadingImage()
-        guard attemptedToDownloadImage == false
-            else { return }
+    func search(forFilmsWithTitle title: String, handler: ([Movie]?, MovieError?) -> Void) throws {
+        guard let urlString = title.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            else { throw MovieError.BadSearchString("Unable to encode \(title) to use within our search.") }
         
-        attemptedToDownloadImage = true
+        guard let searchURL = NSURL(string: "http://www.omdbapi.com/?s=\(urlString)&y=&plot=short&r=json")
+            else { throw MovieError.BadSearchURL("Unable to create URL with the search term: \(title)") }
         
-        
-        guard let posterURLString = posterURLString, let posterURL = NSURL(string: posterURLString)
-            else { noImage(); return }
-        
-        downloadImage(withURL: posterURL)
-    }
-    
-    
-    func downloadImage(withURL URL: NSURL) {
-        let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-        
-        defaultSession.dataTaskWithURL(URL) { data, response, error in
+        defaultSession.dataTaskWithURL(searchURL) { [unowned self] data, response, error in
             dispatch_async(dispatch_get_main_queue(),{
-                if error != nil || data == nil { self.imageState = .NoImage(UIImage(imageLiteral: "MoviePoster")) }
-                let image = UIImage(data: data!)
-                if image == nil { self.imageState = .NoImage(UIImage(imageLiteral: "MoviePoster")) }
-                self.imageState = .Downloaded(image!)
+                if error != nil { handler(nil, MovieError.NoData(error!.localizedDescription)) }
+                if data == nil { handler(nil, MovieError.NoData("Data has come back nil.")) }
                 
+                typealias JSONSearchDictionary = [String : [[String : String]]]
+
+                guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! [String: AnyObject], let search = jsonResponse["Search"]
+                    else { handler(nil, MovieError.BadJSONconversion("Unable to convert data to JSON")); return }
+                
+                let actualSearch: [[String : String]] = search as! [[String : String]]
+                
+                let movies = actualSearch.map { movieJSON in Movie(searchJSON: movieJSON, movieImageDelegate: self.delegate) }
+                                
+                handler(movies, nil)
             })
             }.resume()
-    }
-    
-    func noImage() {
-        imageState.noImage()
-    }
-    
-    func loadingImage() {
         
-        imageState.loadingImage()
     }
     
 }
+

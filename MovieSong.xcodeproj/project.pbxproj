@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D48C64D1D68A138001B0C55 /* MovieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D48C64C1D68A138001B0C55 /* MovieView.xib */; };
+		7D48C64F1D68A150001B0C55 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48C64E1D68A150001B0C55 /* MovieView.swift */; };
+		7D48C6511D68A1FF001B0C55 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48C6501D68A1FF001B0C55 /* Movie.swift */; };
+		7D48C6531D68A31B001B0C55 /* BasicMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48C6521D68A31B001B0C55 /* BasicMovieView.swift */; };
+		7D48C6551D68A329001B0C55 /* BasicMovieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D48C6541D68A329001B0C55 /* BasicMovieView.xib */; };
+		7D48C6571D68BD0E001B0C55 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48C6561D68BD0E001B0C55 /* MovieTableViewCell.swift */; };
+		7D48C6591D68BDAA001B0C55 /* MovieTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48C6581D68BDAA001B0C55 /* MovieTableViewController.swift */; };
+		7D48C65B1D68CF42001B0C55 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48C65A1D68CF42001B0C55 /* Queue.swift */; };
 		7D8FD70A1D67BF880074E1C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FD7091D67BF880074E1C3 /* AppDelegate.swift */; };
 		7D8FD70F1D67BF880074E1C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FD70D1D67BF880074E1C3 /* Main.storyboard */; };
 		7D8FD7111D67BF880074E1C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FD7101D67BF880074E1C3 /* Assets.xcassets */; };
@@ -27,6 +35,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D48C64C1D68A138001B0C55 /* MovieView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieView.xib; sourceTree = "<group>"; };
+		7D48C64E1D68A150001B0C55 /* MovieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
+		7D48C6501D68A1FF001B0C55 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		7D48C6521D68A31B001B0C55 /* BasicMovieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicMovieView.swift; sourceTree = "<group>"; };
+		7D48C6541D68A329001B0C55 /* BasicMovieView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicMovieView.xib; sourceTree = "<group>"; };
+		7D48C6561D68BD0E001B0C55 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		7D48C6581D68BDAA001B0C55 /* MovieTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieTableViewController.swift; path = ../MovieTableViewController.swift; sourceTree = "<group>"; };
+		7D48C65A1D68CF42001B0C55 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		7D8FD7061D67BF880074E1C3 /* MovieSong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8FD7091D67BF880074E1C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D8FD70E1D67BF880074E1C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,8 +96,16 @@
 			isa = PBXGroup;
 			children = (
 				7D8FD70D1D67BF880074E1C3 /* Main.storyboard */,
+				7D48C64C1D68A138001B0C55 /* MovieView.xib */,
+				7D48C64E1D68A150001B0C55 /* MovieView.swift */,
+				7D48C6541D68A329001B0C55 /* BasicMovieView.xib */,
+				7D48C6521D68A31B001B0C55 /* BasicMovieView.swift */,
 				7D8FD7301D6805740074E1C3 /* MovieViewController.swift */,
 				7D8FD72C1D67DACB0074E1C3 /* MovieManager.swift */,
+				7D48C6501D68A1FF001B0C55 /* Movie.swift */,
+				7D48C6581D68BDAA001B0C55 /* MovieTableViewController.swift */,
+				7D48C6561D68BD0E001B0C55 /* MovieTableViewCell.swift */,
+				7D48C65A1D68CF42001B0C55 /* Queue.swift */,
 				7D8FD72B1D67BFC80074E1C3 /* Supporting Files */,
 			);
 			path = MovieSong;
@@ -189,8 +213,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D8FD7141D67BF880074E1C3 /* LaunchScreen.storyboard in Resources */,
+				7D48C64D1D68A138001B0C55 /* MovieView.xib in Resources */,
 				7D8FD7111D67BF880074E1C3 /* Assets.xcassets in Resources */,
 				7D8FD70F1D67BF880074E1C3 /* Main.storyboard in Resources */,
+				7D48C6551D68A329001B0C55 /* BasicMovieView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,9 +234,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D48C6591D68BDAA001B0C55 /* MovieTableViewController.swift in Sources */,
 				7D8FD72D1D67DACB0074E1C3 /* MovieManager.swift in Sources */,
+				7D48C64F1D68A150001B0C55 /* MovieView.swift in Sources */,
+				7D48C6571D68BD0E001B0C55 /* MovieTableViewCell.swift in Sources */,
 				7D8FD70A1D67BF880074E1C3 /* AppDelegate.swift in Sources */,
 				7D8FD7311D6805740074E1C3 /* MovieViewController.swift in Sources */,
+				7D48C6531D68A31B001B0C55 /* BasicMovieView.swift in Sources */,
+				7D48C65B1D68CF42001B0C55 /* Queue.swift in Sources */,
+				7D48C6511D68A1FF001B0C55 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +432,7 @@
 				7D8FD7251D67BF880074E1C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7D8FD7261D67BF880074E1C3 /* Build configuration list for PBXNativeTarget "MovieSongTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +441,7 @@
 				7D8FD7281D67BF880074E1C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
