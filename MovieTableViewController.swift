@@ -10,10 +10,13 @@ import UIKit
 
 class MovieTableViewController: UITableViewController {
     
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     let movieManager = MovieManager()
     var searchTerm: String = String() {
         didSet {
             title = searchTerm
+            movies.removeAll()
+            searchForMovie()
         }
     }
 
@@ -34,27 +37,20 @@ class MovieTableViewController: UITableViewController {
         tableView.showsVerticalScrollIndicator = false
         
         print("view did Load is happening.")
+        
+    }
+    
+    func searchForMovie() {
+        searchButton.enabled = false
         try! movieManager.search(forFilmsWithTitle: searchTerm) { [unowned self] movies, error in
             print("Back in block - \(error)")
             guard let newMovies = movies else { return }
             self.movies = newMovies
+            self.searchButton.enabled = true
             
         }
-    }
-    
-    func changeBackground() {
+
         
-        
-        
-        
-//        UIImage *backgroundImage = [UIImage imageNamed:@"iphone_skyline3.jpg"];
-//        Second create a UIImageView. Set the frame size to the parent's (self) frame size. This is important as the frame size will vary on different devices. Stretching will occur depending on the image size. Next assign the image to the view.
-//        
-//        UIImageView *backgroundImageView=[[UIImageView alloc]initWithFrame:self.view.frame];
-//        backgroundImageView.image=backgroundImage;
-//        Finally, to keep the image behind all controls do the following. It is important if you are setting the image as a background for your app.
-//            
-//            [self.view insertSubview:backgroundImageView atIndex:0];
         
     }
     
@@ -86,6 +82,7 @@ class MovieTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
         let movieCell = cell as! MovieTableViewCell
+        
     
         if indexPath.row == 0 {
             let firstFilm = movies[indexPath.row]
@@ -104,21 +101,30 @@ class MovieTableViewController: UITableViewController {
                 movieCell.movieView.rightBasicMovieView.movie = secondFilm
             }
 
-            
-            
-            
-            
-            
-            
         }
-        
-        
-        
-        
         
     }
 
 }
+
+// MARK: Segue Methods
+
+extension MovieTableViewController {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destVC = segue.destinationViewController as! SearchViewController
+        destVC.searchDelegate = self
+    }
+}
+
+extension MovieTableViewController: SearchDelegate {
+    
+    func search(withTitle title: String) {
+        searchTerm = title
+    }
+}
+
+//MARK: Can Display Image Delegate Methods
 
 extension MovieTableViewController: CanDisplayImageDelegate {
     

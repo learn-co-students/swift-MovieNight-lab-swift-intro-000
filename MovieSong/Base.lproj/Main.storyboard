@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Movie View Controller-->
@@ -81,12 +82,89 @@
                             <outlet property="delegate" destination="GEb-Fq-Hgo" id="0is-4S-rEe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="MI8-yJ-CUt"/>
+                    <navigationItem key="navigationItem" id="MI8-yJ-CUt">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="taq-jc-iXc">
+                            <connections>
+                                <segue destination="FsV-DS-ntg" kind="presentation" identifier="SearchSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="nba-4h-Fuk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="searchButton" destination="taq-jc-iXc" id="n4Q-lc-nEn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ofl-BR-BEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1468.5" y="446.5"/>
+            <point key="canvasLocation" x="1381.5" y="446.5"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="bLo-YH-oEO">
+            <objects>
+                <viewController id="FsV-DS-ntg" customClass="SearchViewController" customModule="MovieSong" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Ek-62-DdC"/>
+                        <viewControllerLayoutGuide type="bottom" id="su0-Ti-6EP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0UT-vy-6ny">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLm-1V-U8O">
+                                <rect key="frame" x="55" y="56" width="264" height="288"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titanic" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O70-NF-ZHv">
+                                        <rect key="frame" x="8" y="31" width="248" height="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JoR-Xz-ytC">
+                                        <rect key="frame" x="108" y="157" width="48" height="30"/>
+                                        <state key="normal" title="Search">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="searchTapped:" destination="FsV-DS-ntg" eventType="touchUpInside" id="Whn-uO-IgY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3T0-Bq-RIk">
+                                        <rect key="frame" x="109" y="213" width="48" height="30"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelTapped:" destination="FsV-DS-ntg" eventType="touchUpInside" id="yU3-yG-lPn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="JoR-Xz-ytC" firstAttribute="top" secondItem="O70-NF-ZHv" secondAttribute="bottom" constant="96" id="38T-1c-LYR"/>
+                                    <constraint firstItem="O70-NF-ZHv" firstAttribute="leading" secondItem="LLm-1V-U8O" secondAttribute="leadingMargin" id="PHf-h9-wd2"/>
+                                    <constraint firstItem="O70-NF-ZHv" firstAttribute="centerX" secondItem="JoR-Xz-ytC" secondAttribute="centerX" id="fx4-J2-IPB"/>
+                                    <constraint firstItem="3T0-Bq-RIk" firstAttribute="leading" secondItem="LLm-1V-U8O" secondAttribute="leading" constant="109" id="ktn-Rl-mfE"/>
+                                    <constraint firstItem="O70-NF-ZHv" firstAttribute="trailing" secondItem="LLm-1V-U8O" secondAttribute="trailingMargin" id="m9S-ha-bLr"/>
+                                    <constraint firstItem="3T0-Bq-RIk" firstAttribute="top" secondItem="JoR-Xz-ytC" secondAttribute="bottom" constant="26" id="qgK-mw-fx2"/>
+                                    <constraint firstItem="O70-NF-ZHv" firstAttribute="top" secondItem="LLm-1V-U8O" secondAttribute="top" constant="31" id="tnn-hS-5nG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.70051203547297303" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LLm-1V-U8O" firstAttribute="centerX" secondItem="0UT-vy-6ny" secondAttribute="centerX" id="0Yk-vo-eyG"/>
+                            <constraint firstItem="su0-Ti-6EP" firstAttribute="top" secondItem="LLm-1V-U8O" secondAttribute="bottom" constant="323" id="N4y-nQ-Ttf"/>
+                            <constraint firstItem="LLm-1V-U8O" firstAttribute="leading" secondItem="0UT-vy-6ny" secondAttribute="leadingMargin" constant="39" id="mcX-bO-xHf"/>
+                            <constraint firstItem="LLm-1V-U8O" firstAttribute="top" secondItem="3Ek-62-DdC" secondAttribute="bottom" constant="36" id="zxB-UM-1N0"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="searchTextField" destination="O70-NF-ZHv" id="2L3-W3-1kj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RPf-zE-PgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1866.5" y="446.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UpN-cR-WJX">

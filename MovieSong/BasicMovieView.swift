@@ -26,6 +26,8 @@ final class BasicMovieView: UIView {
     
     var movie: Movie! {
         didSet {
+            queue.clearOperations()
+            self.moviePosterImageView.layer.removeAllAnimations()
             print("Did set of movie called in BasicMovieView for \(movie.title)")
             movie.movieImageDelegate = self
             if movie.image != nil { moviePosterImageView.image = movie.image }
@@ -65,16 +67,30 @@ extension BasicMovieView: MovieImageDelegate {
     func imageUpdate(withMovie movie: Movie) {
         if displayImageDelegate?.canDisplayImage(self) == false { print("Cant display dude"); return }
         
+       
+        
         switch movie.imageState {
-        case .Loading(let image):
+        case .Loading:
+            self.moviePosterImageView.layer.removeAllAnimations()
+            queue.clearOperations()
             print("Add Loading to the queue.")
-            queue.addOperation(self.moviePosterImageView.image = image, duration: 1.0)
+            let loadingImage1 = UIImage(imageLiteral: "Loading1")
+            let loadingImage2 = UIImage(imageLiteral: "Loading2")
+            let loadingImage4 = UIImage(imageLiteral: "Loading4")
+            
+            queue.addOperation(self.moviePosterImageView.image = loadingImage2, animation: .TransitionCrossDissolve, duration: 0.1)
+            queue.addOperation(self.moviePosterImageView.image = loadingImage4, duration: 0.4)
+            queue.addOperation(self.moviePosterImageView.image = loadingImage1, duration: 0.8)
+
+
+            
+
         case .NoImage(let image):
             print("Add no image to the queue.")
             queue.addOperation(self.moviePosterImageView.image = image)
         case .Downloaded(let image):
             print("Add download to the queue")
-            queue.addOperation(self.moviePosterImageView.image = image, duration: 1.0)
+            queue.addOperation(self.moviePosterImageView.image = image, duration: 0.6)
 
         case .Nothing:
             queue.addOperation(self.moviePosterImageView.image = nil, animation: .TransitionCrossDissolve, duration: 0.2)

@@ -33,9 +33,11 @@ final class Queue {
         
         UIView.transitionWithView(imageView, duration: duration, options: animation, animations: operation) { _ in
             print("Done with some animation")
+            if !self.operations.isEmpty {
             _ = self.operations.removeFirst()
             self.performingOperations = false
             self.performNextOperation()
+            }
         }
     }
     
