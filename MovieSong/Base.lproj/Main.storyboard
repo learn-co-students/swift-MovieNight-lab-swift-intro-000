@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Movie View Controller-->
@@ -18,17 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kBQ-lT-EXa">
-                                <rect key="frame" x="112" y="28" width="150" height="225"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kBQ-lT-EXa">
+                                <rect key="frame" x="120" y="28" width="135" height="203"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="203" id="97Y-Uc-nXi"/>
+                                    <constraint firstAttribute="width" constant="135" id="OjI-ge-Cak"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kBQ-lT-EXa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="E69-Co-fEp"/>
-                            <constraint firstItem="kBQ-lT-EXa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="96" id="L7G-Sk-59D"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kBQ-lT-EXa" secondAttribute="bottom" constant="414" id="bTM-TQ-2EF"/>
-                            <constraint firstItem="kBQ-lT-EXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sTK-vz-QRU"/>
+                            <constraint firstItem="kBQ-lT-EXa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="T7b-g3-Vbg"/>
+                            <constraint firstItem="kBQ-lT-EXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="y4s-ET-jdX"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
