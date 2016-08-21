@@ -3,7 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Movie View Controller-->
@@ -111,50 +112,63 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLm-1V-U8O">
-                                <rect key="frame" x="55" y="56" width="264" height="288"/>
+                                <rect key="frame" x="56" y="84" width="262" height="233"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titanic" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O70-NF-ZHv">
-                                        <rect key="frame" x="8" y="31" width="248" height="30"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JoR-Xz-ytC">
-                                        <rect key="frame" x="108" y="157" width="48" height="30"/>
-                                        <state key="normal" title="Search">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="searchTapped:" destination="FsV-DS-ntg" eventType="touchUpInside" id="Whn-uO-IgY"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3T0-Bq-RIk">
-                                        <rect key="frame" x="109" y="213" width="48" height="30"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelTapped:" destination="FsV-DS-ntg" eventType="touchUpInside" id="yU3-yG-lPn"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="j5l-0I-51t">
+                                        <rect key="frame" x="0.0" y="0.0" width="262" height="233"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Film Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfl-8P-0Jt">
+                                                <rect key="frame" x="8" y="8" width="246" height="57"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <color key="textColor" red="0.93725490196078431" green="0.43529411764705883" blue="0.094117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CYO-3U-olb">
+                                                <rect key="frame" x="8" y="80" width="246" height="40"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O70-NF-ZHv">
+                                                        <rect key="frame" x="0.0" y="0.0" width="246" height="40"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Gpu-Wt-2Xn"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fFR-bc-Ywo">
+                                                <rect key="frame" x="8" y="135" width="246" height="90"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="6XY-Wh-9j9">
+                                                        <rect key="frame" x="69" y="0.0" width="108" height="90"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="6XY-Wh-9j9" secondAttribute="height" multiplier="6:5" id="WBJ-Ff-FOK"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="90" id="xVT-nb-XOT"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.59215686274509804" green="0.83137254901960789" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="JoR-Xz-ytC" firstAttribute="top" secondItem="O70-NF-ZHv" secondAttribute="bottom" constant="96" id="38T-1c-LYR"/>
-                                    <constraint firstItem="O70-NF-ZHv" firstAttribute="leading" secondItem="LLm-1V-U8O" secondAttribute="leadingMargin" id="PHf-h9-wd2"/>
-                                    <constraint firstItem="O70-NF-ZHv" firstAttribute="centerX" secondItem="JoR-Xz-ytC" secondAttribute="centerX" id="fx4-J2-IPB"/>
-                                    <constraint firstItem="3T0-Bq-RIk" firstAttribute="leading" secondItem="LLm-1V-U8O" secondAttribute="leading" constant="109" id="ktn-Rl-mfE"/>
-                                    <constraint firstItem="O70-NF-ZHv" firstAttribute="trailing" secondItem="LLm-1V-U8O" secondAttribute="trailingMargin" id="m9S-ha-bLr"/>
-                                    <constraint firstItem="3T0-Bq-RIk" firstAttribute="top" secondItem="JoR-Xz-ytC" secondAttribute="bottom" constant="26" id="qgK-mw-fx2"/>
-                                    <constraint firstItem="O70-NF-ZHv" firstAttribute="top" secondItem="LLm-1V-U8O" secondAttribute="top" constant="31" id="tnn-hS-5nG"/>
+                                    <constraint firstAttribute="trailing" secondItem="j5l-0I-51t" secondAttribute="trailing" id="9E5-un-VwQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="j5l-0I-51t" secondAttribute="bottom" id="Iop-an-gKg"/>
+                                    <constraint firstItem="j5l-0I-51t" firstAttribute="top" secondItem="LLm-1V-U8O" secondAttribute="top" id="y3E-pP-ahh"/>
+                                    <constraint firstItem="j5l-0I-51t" firstAttribute="leading" secondItem="LLm-1V-U8O" secondAttribute="leading" id="ys7-eH-aXJ"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.70051203547297303" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="LLm-1V-U8O" firstAttribute="centerX" secondItem="0UT-vy-6ny" secondAttribute="centerX" id="0Yk-vo-eyG"/>
-                            <constraint firstItem="su0-Ti-6EP" firstAttribute="top" secondItem="LLm-1V-U8O" secondAttribute="bottom" constant="323" id="N4y-nQ-Ttf"/>
-                            <constraint firstItem="LLm-1V-U8O" firstAttribute="leading" secondItem="0UT-vy-6ny" secondAttribute="leadingMargin" constant="39" id="mcX-bO-xHf"/>
-                            <constraint firstItem="LLm-1V-U8O" firstAttribute="top" secondItem="3Ek-62-DdC" secondAttribute="bottom" constant="36" id="zxB-UM-1N0"/>
+                            <constraint firstItem="LLm-1V-U8O" firstAttribute="width" secondItem="0UT-vy-6ny" secondAttribute="width" multiplier="0.7" id="2pC-M8-hUY"/>
+                            <constraint firstItem="LLm-1V-U8O" firstAttribute="centerY" secondItem="0UT-vy-6ny" secondAttribute="centerY" multiplier="0.6" id="OZx-Pk-8hC"/>
+                            <constraint firstItem="LLm-1V-U8O" firstAttribute="height" secondItem="0UT-vy-6ny" secondAttribute="height" multiplier="0.35" id="bhJ-dK-glL"/>
+                            <constraint firstItem="LLm-1V-U8O" firstAttribute="centerX" secondItem="0UT-vy-6ny" secondAttribute="centerX" id="geZ-46-kld"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -164,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPf-zE-PgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1866.5" y="446.5"/>
+            <point key="canvasLocation" x="1856.5" y="446.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UpN-cR-WJX">
@@ -185,4 +199,7 @@
             <point key="canvasLocation" x="657" y="447"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Camera" width="579" height="490"/>
+    </resources>
 </document>

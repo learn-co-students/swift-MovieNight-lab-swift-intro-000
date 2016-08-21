@@ -17,20 +17,40 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     
     var searchDelegate: SearchDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.returnKeyType = .Search
+        searchTextField.delegate = self
+        searchTextField.becomeFirstResponder()
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+        gestureRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(gestureRecognizer)
     }
-
-    @IBAction func searchTapped(sender: UIButton) {
-        let title = searchTextField.text ?? " "
-        searchDelegate?.search(withTitle: title)
+    
+    func dismissView() {
+        searchTextField.resignFirstResponder()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func cancelTapped(sender: UIButton) {
-        
-        dismissViewControllerAnimated(true, completion: nil)
+    func search() {
+        searchDelegate?.search(withTitle: searchTextField.text ?? " ")
+        dismissView()
     }
+    
+    @IBAction func cancelTapped(sender: UIButton) {
+        dismissView()
+    }
+    
+}
 
+// MARK: Text Field Delegate Methods
+
+extension SearchViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        search()
+        return false
+    }
+    
 }

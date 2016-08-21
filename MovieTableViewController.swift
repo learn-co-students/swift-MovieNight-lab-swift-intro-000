@@ -15,7 +15,6 @@ class MovieTableViewController: UITableViewController {
     var searchTerm: String = String() {
         didSet {
             title = searchTerm
-            movies.removeAll()
             searchForMovie()
         }
     }
@@ -41,13 +40,10 @@ class MovieTableViewController: UITableViewController {
     }
     
     func searchForMovie() {
-        searchButton.enabled = false
         try! movieManager.search(forFilmsWithTitle: searchTerm) { [unowned self] movies, error in
             print("Back in block - \(error)")
             guard let newMovies = movies else { return }
-            self.movies = newMovies
-            self.searchButton.enabled = true
-            
+            self.movies += newMovies
         }
 
         
@@ -75,35 +71,28 @@ class MovieTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieTableViewCell
         
-
-        return cell
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let movieCell = cell as! MovieTableViewCell
-        
-    
         if indexPath.row == 0 {
             let firstFilm = movies[indexPath.row]
-            movieCell.movieView.leftBasicMovieView.movie = firstFilm
+            cell.movieView.leftBasicMovieView.movie = firstFilm
             if indexPath.row + 1 <= movies.count {
                 let secondFilm = movies[indexPath.row + 1]
-                movieCell.movieView.rightBasicMovieView.movie = secondFilm
+                cell.movieView.rightBasicMovieView.movie = secondFilm
             }
         } else {
             
             let index = indexPath.row * 2
             let firstFilm = movies[index]
-            movieCell.movieView.leftBasicMovieView.movie = firstFilm
+            cell.movieView.leftBasicMovieView.movie = firstFilm
             if index + 1 <= movies.count {
                 let secondFilm = movies[index + 1]
-                movieCell.movieView.rightBasicMovieView.movie = secondFilm
+                cell.movieView.rightBasicMovieView.movie = secondFilm
             }
-
         }
         
+        return cell
     }
+    
+    
 
 }
 
