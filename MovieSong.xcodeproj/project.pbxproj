@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D37529F1D69F81E004D5999 /* MovieImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37529E1D69F81E004D5999 /* MovieImageState.swift */; };
 		7D48C64D1D68A138001B0C55 /* MovieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D48C64C1D68A138001B0C55 /* MovieView.xib */; };
 		7D48C64F1D68A150001B0C55 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48C64E1D68A150001B0C55 /* MovieView.swift */; };
 		7D48C6511D68A1FF001B0C55 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48C6501D68A1FF001B0C55 /* Movie.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D37529E1D69F81E004D5999 /* MovieImageState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieImageState.swift; sourceTree = "<group>"; };
 		7D48C64C1D68A138001B0C55 /* MovieView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieView.xib; sourceTree = "<group>"; };
 		7D48C64E1D68A150001B0C55 /* MovieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
 		7D48C6501D68A1FF001B0C55 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -99,9 +101,10 @@
 			children = (
 				7D8FD70D1D67BF880074E1C3 /* Main.storyboard */,
 				7D48C64C1D68A138001B0C55 /* MovieView.xib */,
-				7D48C64E1D68A150001B0C55 /* MovieView.swift */,
 				7D48C6541D68A329001B0C55 /* BasicMovieView.xib */,
 				7D48C6521D68A31B001B0C55 /* BasicMovieView.swift */,
+				7D37529E1D69F81E004D5999 /* MovieImageState.swift */,
+				7D48C64E1D68A150001B0C55 /* MovieView.swift */,
 				7D8FD7301D6805740074E1C3 /* MovieViewController.swift */,
 				7D8FD72C1D67DACB0074E1C3 /* MovieManager.swift */,
 				7D48C6501D68A1FF001B0C55 /* Movie.swift */,
@@ -247,6 +250,7 @@
 				7D48C6531D68A31B001B0C55 /* BasicMovieView.swift in Sources */,
 				7D48C65B1D68CF42001B0C55 /* Queue.swift in Sources */,
 				7D48C6511D68A1FF001B0C55 /* Movie.swift in Sources */,
+				7D37529F1D69F81E004D5999 /* MovieImageState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

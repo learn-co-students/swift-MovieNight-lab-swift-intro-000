@@ -15,7 +15,7 @@ protocol CanDisplayImageDelegate {
 }
 
 final class BasicMovieView: UIView {
-
+    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var moviePosterImageView: UIImageView!
@@ -26,10 +26,9 @@ final class BasicMovieView: UIView {
     
     var movie: Movie! {
         didSet {
-            print("Did set of movie called in BasicMovieView for \(movie.title)")
+            movieTitleLabel.text = movie.year
             movie.movieImageDelegate = self
             moviePosterImageView.image = movie.image
-            movieTitleLabel.text = movie.year
         }
     }
     
@@ -53,7 +52,6 @@ final class BasicMovieView: UIView {
         contentView.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
         
         queue = Queue(imageView: moviePosterImageView)
-        
     }
     
 }
@@ -66,8 +64,8 @@ extension BasicMovieView {
         queue.clearOperations()
         moviePosterImageView.layer.removeAllAnimations()
         contentView.layer.removeAllAnimations()
-        movieTitleLabel.text = ""
-        moviePosterImageView.image = nil
+        movieTitleLabel.text = " "
+        moviePosterImageView.image = UIImage(imageLiteral: "Nothing")
     }
     
 }
@@ -77,32 +75,31 @@ extension BasicMovieView {
 extension BasicMovieView: MovieImageDelegate {
     
     func imageUpdate(withMovie movie: Movie) {
-//        if displayImageDelegate?.canDisplayImage(self) == false { print("Cant display dude"); return }
-        
+        //        if displayImageDelegate?.canDisplayImage(self) == false { print("Cant display dude"); return }
         switch movie.imageState {
         case .Loading:
-            print("Loading Case for movie \(movie.title)")
-            let loadingImage1 = UIImage(imageLiteral: "Loading1")
-            let loadingImage2 = UIImage(imageLiteral: "Loading2")
-            let loadingImage4 = UIImage(imageLiteral: "Loading4")
-            queue.addOperation(self.moviePosterImageView.image = loadingImage2, animation: .TransitionCrossDissolve, duration: 0.6)
-            queue.addOperation(self.moviePosterImageView.image = loadingImage4, duration: 0.6)
+            
+            let images = (1...8).map { index -> UIImage in
+                let imageName = "Loading" + String(index)
+                print("Image name is \(imageName)")
+                let image = UIImage(imageLiteral: imageName)
+                return image
+            }
+        
+            for i in images {
+                queue.addOperation(self.moviePosterImageView.image = i)
+            }
+            
         case .NoImage(let image):
-            print("No Image Case for movie \(movie.title)")
             queue.addOperation(self.moviePosterImageView.image = image, duration: 0.6)
         case .Downloaded(let image):
-            let animations: [UIViewAnimationOptions] = [.TransitionCurlDown, .TransitionFlipFromTop, .TransitionFlipFromLeft, .TransitionFlipFromRight, .TransitionFlipFromBottom]
-            
+            let animations: [UIViewAnimationOptions] = [.TransitionCurlDown]
             let randomIndex = Int(arc4random_uniform(UInt32(animations.count)))
             let randomAnimation = animations[randomIndex]
-
-            
-            print("Downloaded Case for movie \(movie.title)")
             queue.addOperation(self.moviePosterImageView.image = image, animation: randomAnimation, duration: 0.8)
-
         case .Nothing:
-            print("Nothing Case for movie \(movie.title)")
-            queue.addOperation(self.moviePosterImageView.image = nil, animation: .TransitionCrossDissolve, duration: 0.6)
+            let image = UIImage(imageLiteral: "Nothing")
+            queue.addOperation(self.moviePosterImageView.image = image, animation: .TransitionCrossDissolve, duration: 0.1)
         }
     }
     

@@ -36,7 +36,6 @@ final class MovieManager {
 typealias JSONResponseDictionary = [String : String]
 typealias JSONSearchDictionary = [String : [[String : String]]]
 
-
 extension MovieManager {
     
     func search(forFilm film: String, withHandler handler: (Movie?, MovieError?) -> Void) throws {
@@ -53,9 +52,6 @@ extension MovieManager {
                 
                 guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
                     else { handler(nil, MovieError.BadJSONconversion("Unable to convert data to JSON")); return }
-                
-                
-                
                 
                 let movie = Movie(json: jsonResponse, movieImageDelegate: self.delegate)
                 
@@ -76,8 +72,6 @@ extension MovieManager {
                 if error != nil { handler(nil, MovieError.NoData(error!.localizedDescription)) }
                 if data == nil { handler(nil, MovieError.NoData("Data has come back nil.")) }
                 
-                typealias JSONSearchDictionary = [String : [[String : String]]]
-
                 guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! [String: AnyObject], let search = jsonResponse["Search"]
                     else { handler(nil, MovieError.BadJSONconversion("Unable to convert data to JSON")); return }
                 

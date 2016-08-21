@@ -35,11 +35,9 @@ class MovieViewController: UIViewController {
             
         } catch MovieError.BadSearchString(let errorMessage) {
             
-            print("Bad Search String: \(errorMessage)")
             
         } catch MovieError.BadSearchURL(let errorMessage) {
             
-            print("Bad Search URL: \(errorMessage)")
             
         } catch {
             
@@ -57,10 +55,8 @@ extension MovieViewController: MovieImageDelegate {
     func imageUpdate(withMovie movie: Movie) {
         switch movie.imageState {
         case .Loading(let image):
-            print("Adding loading operation dude!!!")
             queue.addOperation(self.posterImageView.image = image, animation: .TransitionCrossDissolve, duration: 10.0)
         case .NoImage(let image):
-            print("Add NO IMAGE OPERATION!!!!!!!!")
             queue.addOperation(self.posterImageView.image = image)
        case .Downloaded(let image):
         queue.addOperation(self.posterImageView.image = image)

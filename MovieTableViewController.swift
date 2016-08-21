@@ -28,7 +28,7 @@ class MovieTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchTerm = "Love"
+        
         
         tableView.allowsSelection = false
         tableView.backgroundColor = UIColor.clearColor()
@@ -38,10 +38,9 @@ class MovieTableViewController: UITableViewController {
     
     func searchForMovie() {
         try! movieManager.search(forFilmsWithTitle: searchTerm) { [unowned self] movies, error in
-            print("Back in block - \(error)")
             guard var newMovies = movies else { return }
             newMovies += self.movies
-            self.movies = []
+            self.movies.removeAll()
             self.movies = newMovies
         }
         
@@ -79,7 +78,7 @@ class MovieTableViewController: UITableViewController {
             let index = indexPath.row * 2
             let firstFilm = movies[index]
             cell.movieView.leftBasicMovieView.movie = firstFilm
-            if index + 1 <= movies.count {
+            if index + 1 < movies.count {
                 let secondFilm = movies[index + 1]
                 cell.movieView.rightBasicMovieView.movie = secondFilm
             }

@@ -15,11 +15,14 @@ protocol SearchDelegate {
 class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var mainView: UIView!
     
     var searchDelegate: SearchDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.layer.cornerRadius = 10.0
+        mainView.layer.masksToBounds = true
         searchTextField.returnKeyType = .Search
         searchTextField.delegate = self
         searchTextField.becomeFirstResponder()

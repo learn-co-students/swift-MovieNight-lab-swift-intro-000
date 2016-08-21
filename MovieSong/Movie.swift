@@ -9,27 +9,6 @@
 import Foundation
 import UIKit
 
-enum MovieImageState {
-    
-    case Loading(UIImage)
-    case Downloaded(UIImage)
-    case NoImage(UIImage)
-    case Nothing
-    
-    init() {
-        self = .Nothing
-    }
-    
-    mutating func noImage() {
-        self = .NoImage(UIImage(imageLiteral: "MoviePoster"))
-    }
-    
-    mutating func loadingImage() {
-        self = .Loading(UIImage(imageLiteral: "LoadingPoster"))
-    }
-    
-}
-
 protocol MovieImageDelegate {
     
     func imageUpdate(withMovie movie: Movie)
@@ -52,30 +31,8 @@ final class Movie {
     
     var attemptedToDownloadImage = false
     var movieImageDelegate: MovieImageDelegate?
-    
-    var shouldKickOffImageDownload: Bool {
-        switch (imageState, attemptedToDownloadImage) {
-        case (.Loading(_), false): return true
-        case (.Nothing, false): return true
-        default: return false
-        }
-    }
-    
-    var image: UIImage? {
-        
-        switch imageState {
-        case .Loading(let image):
-            if shouldKickOffImageDownload { downloadImage() }
-            return image
-        case .Downloaded(let image):
-            return image
-        case .NoImage(let image):
-            return image
-        case .Nothing:
-            if shouldKickOffImageDownload {  downloadImage() }
-            return nil
-        }
-    }
+    var shouldKickOffImageDownload: Bool { return shouldKickOffTheDownload() }
+    var image: UIImage? { return retrieveImage() }
         
     var imageState = MovieImageState() {
         didSet {
@@ -94,7 +51,6 @@ final class Movie {
         tomatoMeter = json["tomatoMeter"] ?? "N/A"
         imdbID = json["imdbID"] ?? "N/A"
         plot = json["Plot"] ?? "No Plot"
-        
         self.movieImageDelegate = movieImageDelegate
     }
     
@@ -108,14 +64,45 @@ final class Movie {
     
 }
 
+// MARK: Image Methods
+
+extension Movie {
+    
+    private func retrieveImage() -> UIImage? {
+        switch imageState {
+        case .Loading(let image):
+            if shouldKickOffImageDownload { downloadImage() }
+            return image
+        case .Downloaded(let image): return image
+        case .NoImage(let image): return image
+        case .Nothing:
+            if shouldKickOffImageDownload {  downloadImage() }
+            return nil
+        }
+    }
+    
+    func noImage() {
+        imageState.noImage()
+    }
+    
+    func loadingImage() {
+        imageState.loadingImage()
+    }
+    
+    func nothingImage() {
+        imageState.nothingImage()
+    }
+    
+}
+
 // MARK: Download Image Methods
 
 extension Movie {
     
     func downloadImage()  {
-        self.imageState = .Nothing
+        nothingImage()
         loadingImage()
-        guard attemptedToDownloadImage == false else { return }
+        guard !attemptedToDownloadImage else { return }
         attemptedToDownloadImage = true
         guard let posterURLString = posterURLString, let posterURL = NSURL(string: posterURLString) else { noImage(); return }
         downloadImage(withURL: posterURL)
@@ -139,12 +126,12 @@ extension Movie {
             }.resume()
     }
     
-    func noImage() {
-        imageState.noImage()
-    }
-    
-    func loadingImage() {
-        imageState.loadingImage()
+    private func shouldKickOffTheDownload() -> Bool {
+        switch (imageState, attemptedToDownloadImage) {
+        case (.Loading(_), false): return true
+        case (.Nothing, false): return true
+        default: return false
+        }
     }
     
 }
