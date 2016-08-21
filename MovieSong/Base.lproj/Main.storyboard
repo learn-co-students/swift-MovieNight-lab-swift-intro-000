@@ -7,42 +7,6 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Movie View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="MovieViewController" customModule="MovieSong" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kBQ-lT-EXa">
-                                <rect key="frame" x="120" y="28" width="135" height="203"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="203" id="97Y-Uc-nXi"/>
-                                    <constraint firstAttribute="width" constant="135" id="OjI-ge-Cak"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="kBQ-lT-EXa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="T7b-g3-Vbg"/>
-                            <constraint firstItem="kBQ-lT-EXa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="y4s-ET-jdX"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="posterImageView" destination="kBQ-lT-EXa" id="XBr-Fj-roL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="140.5" y="440.5"/>
-        </scene>
         <!--Movie Table View Controller-->
         <scene sceneID="aNE-as-YRu">
             <objects>
@@ -97,7 +61,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ofl-BR-BEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381.5" y="446.5"/>
+            <point key="canvasLocation" x="1395.5" y="446.5"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="bLo-YH-oEO">
@@ -295,7 +259,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Lt-Od-MS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="441"/>
+            <point key="canvasLocation" x="813" y="447"/>
         </scene>
     </scenes>
     <resources>
