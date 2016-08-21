@@ -12,56 +12,63 @@ class MovieTableViewController: UITableViewController {
     
     @IBOutlet weak var searchButton: UIBarButtonItem!
     let movieManager = MovieManager()
+    
     var searchTerm: String = String() {
         didSet {
             title = searchTerm
             searchForMovie()
         }
     }
-
+    
     var movies: [Movie] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         tableView.allowsSelection = false
         tableView.backgroundColor = UIColor.clearColor()
         tableView.separatorStyle = .None
-//        tableView.showsVerticalScrollIndicator = false
     }
     
-    func searchForMovie() {
-        try! movieManager.search(forFilmsWithTitle: searchTerm) { [unowned self] movies, error in
-            guard var newMovies = movies else { return }
-            newMovies += self.movies
-            self.movies.removeAll()
-            self.movies = newMovies
-        }
-        
+}
+
+// MARK: Movie Selected
+
+extension MovieTableViewController: MovieSelected {
+    
+    func movieSelected(movie: Movie) {
+        performSegueWithIdentifier("MovieDetail", sender: movie)
     }
     
-   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+}
+
+
+// MARK: Table view delegate
+
+extension MovieTableViewController {
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 320
     }
-
     
+}
 
-    // MARK: - Table view data source
 
+// MARK: Table view data source
+
+extension MovieTableViewController {
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count % 2 == 0 ? movies.count / 2 : (movies.count / 2) + 1
     }
-
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieTableViewCell
@@ -87,28 +94,52 @@ class MovieTableViewController: UITableViewController {
         return cell
     }
     
-    
-
 }
 
-// MARK: Segue Methods
+
+// MARK: Segue
 
 extension MovieTableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destVC = segue.destinationViewController as! SearchViewController
-        destVC.searchDelegate = self
+        guard let identifier = segue.identifier else { return }
+        
+        switch identifier {
+        case "SearchSegue":
+            let destVC = segue.destinationViewController as! SearchViewController
+            destVC.searchDelegate = self
+        case "MovieDetail":
+            break
+        default:
+            break
+        }
+        
+    
     }
 }
+
+
+// MARK: Search
 
 extension MovieTableViewController: SearchDelegate {
     
     func search(withTitle title: String) {
         searchTerm = title
     }
+    
+    func searchForMovie() {
+        try! movieManager.search(forFilmsWithTitle: searchTerm) { [unowned self] movies, error in
+            guard var newMovies = movies else { return }
+            newMovies += self.movies
+            self.movies.removeAll()
+            self.movies = newMovies
+        }
+        
+    }
 }
 
-//MARK: Can Display Image Delegate Methods
+
+//MARK: Can Display Image Delegate
 
 extension MovieTableViewController: CanDisplayImageDelegate {
     

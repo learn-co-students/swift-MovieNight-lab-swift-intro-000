@@ -24,6 +24,7 @@
 		7D8FD71F1D67BF880074E1C3 /* MovieSongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FD71E1D67BF880074E1C3 /* MovieSongTests.swift */; };
 		7D8FD72D1D67DACB0074E1C3 /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FD72C1D67DACB0074E1C3 /* MovieManager.swift */; };
 		7D8FD7311D6805740074E1C3 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FD7301D6805740074E1C3 /* MovieViewController.swift */; };
+		7DFD36421D6A4D1700A1FD16 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD36411D6A4D1700A1FD16 /* ImageViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		7D8FD7201D67BF880074E1C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D8FD72C1D67DACB0074E1C3 /* MovieManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 		7D8FD7301D6805740074E1C3 /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		7DFD36411D6A4D1700A1FD16 /* ImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +105,8 @@
 				7D48C64C1D68A138001B0C55 /* MovieView.xib */,
 				7D48C6541D68A329001B0C55 /* BasicMovieView.xib */,
 				7D48C6521D68A31B001B0C55 /* BasicMovieView.swift */,
-				7D37529E1D69F81E004D5999 /* MovieImageState.swift */,
 				7D48C64E1D68A150001B0C55 /* MovieView.swift */,
+				7D37529E1D69F81E004D5999 /* MovieImageState.swift */,
 				7D8FD7301D6805740074E1C3 /* MovieViewController.swift */,
 				7D8FD72C1D67DACB0074E1C3 /* MovieManager.swift */,
 				7D48C6501D68A1FF001B0C55 /* Movie.swift */,
@@ -112,6 +114,7 @@
 				7D48C6561D68BD0E001B0C55 /* MovieTableViewCell.swift */,
 				7D48C65A1D68CF42001B0C55 /* Queue.swift */,
 				7D48C65C1D68FE5B001B0C55 /* SearchViewController.swift */,
+				7DFD36411D6A4D1700A1FD16 /* ImageViewExtension.swift */,
 				7D8FD72B1D67BFC80074E1C3 /* Supporting Files */,
 			);
 			path = MovieSong;
@@ -250,6 +253,7 @@
 				7D48C6531D68A31B001B0C55 /* BasicMovieView.swift in Sources */,
 				7D48C65B1D68CF42001B0C55 /* Queue.swift in Sources */,
 				7D48C6511D68A1FF001B0C55 /* Movie.swift in Sources */,
+				7DFD36421D6A4D1700A1FD16 /* ImageViewExtension.swift in Sources */,
 				7D37529F1D69F81E004D5999 /* MovieImageState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

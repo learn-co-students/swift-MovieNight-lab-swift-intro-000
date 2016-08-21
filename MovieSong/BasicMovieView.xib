@@ -19,19 +19,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8bI-z8-kYR">
-                    <rect key="frame" x="32" y="0.0" width="229" height="351"/>
+                    <rect key="frame" x="32" y="0.0" width="199" height="351"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCA-hM-3Yu">
-                            <rect key="frame" x="0.0" y="0.0" width="229" height="0.0"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XCA-hM-3Yu">
+                            <rect key="frame" x="0.0" y="0.0" width="199" height="44"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="78L-se-i03">
-                            <rect key="frame" x="0.0" y="8" width="229" height="343"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="78L-se-i03">
+                            <rect key="frame" x="0.0" y="52" width="199" height="299"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Nothing" translatesAutoresizingMaskIntoConstraints="NO" id="6ah-gd-lsL">
-                                    <rect key="frame" x="0.0" y="0.0" width="229" height="343"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nothing" translatesAutoresizingMaskIntoConstraints="NO" id="6ah-gd-lsL">
+                                    <rect key="frame" x="0.0" y="0.0" width="199" height="299"/>
                                 </imageView>
                             </subviews>
                             <constraints>

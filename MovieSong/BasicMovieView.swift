@@ -9,9 +9,11 @@
 import UIKit
 
 protocol CanDisplayImageDelegate {
-    
     func canDisplayImage(view: BasicMovieView) -> Bool
-    
+}
+
+protocol MovieSelected {
+    func movieSelected(movie: Movie)
 }
 
 final class BasicMovieView: UIView {
@@ -22,6 +24,7 @@ final class BasicMovieView: UIView {
     
     var queue: Queue!
     var displayImageDelegate: CanDisplayImageDelegate?
+    var movieSelectedDelegate: MovieSelected?
     var hasMovie: Bool { return movie != nil }
     
     var movie: Movie! {
@@ -50,8 +53,25 @@ final class BasicMovieView: UIView {
         contentView.rightAnchor.constraintEqualToAnchor(self.rightAnchor).active = true
         contentView.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor).active = true
         contentView.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
-        
         queue = Queue(imageView: moviePosterImageView)
+        setupGestureRecognizer()
+    }
+    
+}
+
+// MARK: Tapping ImageView Methods
+
+extension BasicMovieView {
+    
+    func setupGestureRecognizer() {
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        gestureRecognizer.numberOfTapsRequired = 1
+        moviePosterImageView.userInteractionEnabled = true
+        moviePosterImageView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func imageViewTapped() {
+        movieSelectedDelegate?.movieSelected(movie)
     }
     
 }
