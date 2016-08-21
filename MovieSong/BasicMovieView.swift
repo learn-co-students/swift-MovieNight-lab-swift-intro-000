@@ -26,11 +26,9 @@ final class BasicMovieView: UIView {
     
     var movie: Movie! {
         didSet {
-            queue.clearOperations()
-            self.moviePosterImageView.layer.removeAllAnimations()
             print("Did set of movie called in BasicMovieView for \(movie.title)")
             movie.movieImageDelegate = self
-            if movie.image != nil { moviePosterImageView.image = movie.image }
+            moviePosterImageView.image = movie.image
             movieTitleLabel.text = movie.year
         }
     }
@@ -60,30 +58,51 @@ final class BasicMovieView: UIView {
     
 }
 
+// MARK: Re-Use Methods
+
+extension BasicMovieView {
+    
+    func clearContentsForReUse() {
+        queue.clearOperations()
+        moviePosterImageView.layer.removeAllAnimations()
+        contentView.layer.removeAllAnimations()
+        movieTitleLabel.text = ""
+        moviePosterImageView.image = nil
+    }
+    
+}
+
 // MARK: Movie Image Delegate Methods
 
 extension BasicMovieView: MovieImageDelegate {
     
     func imageUpdate(withMovie movie: Movie) {
-        if displayImageDelegate?.canDisplayImage(self) == false { print("Cant display dude"); return }
+//        if displayImageDelegate?.canDisplayImage(self) == false { print("Cant display dude"); return }
         
         switch movie.imageState {
         case .Loading:
-            self.moviePosterImageView.layer.removeAllAnimations()
-            queue.clearOperations()
+            print("Loading Case for movie \(movie.title)")
             let loadingImage1 = UIImage(imageLiteral: "Loading1")
             let loadingImage2 = UIImage(imageLiteral: "Loading2")
             let loadingImage4 = UIImage(imageLiteral: "Loading4")
-            queue.addOperation(self.moviePosterImageView.image = loadingImage2, animation: .TransitionCrossDissolve, duration: 0.1)
-            queue.addOperation(self.moviePosterImageView.image = loadingImage4, duration: 0.4)
-            queue.addOperation(self.moviePosterImageView.image = loadingImage1, duration: 0.8)
+            queue.addOperation(self.moviePosterImageView.image = loadingImage2, animation: .TransitionCrossDissolve, duration: 0.6)
+            queue.addOperation(self.moviePosterImageView.image = loadingImage4, duration: 0.6)
         case .NoImage(let image):
+            print("No Image Case for movie \(movie.title)")
             queue.addOperation(self.moviePosterImageView.image = image, duration: 0.6)
         case .Downloaded(let image):
-            queue.addOperation(self.moviePosterImageView.image = image, duration: 0.6)
+            let animations: [UIViewAnimationOptions] = [.TransitionCurlDown, .TransitionFlipFromTop, .TransitionFlipFromLeft, .TransitionFlipFromRight, .TransitionFlipFromBottom]
+            
+            let randomIndex = Int(arc4random_uniform(UInt32(animations.count)))
+            let randomAnimation = animations[randomIndex]
+
+            
+            print("Downloaded Case for movie \(movie.title)")
+            queue.addOperation(self.moviePosterImageView.image = image, animation: randomAnimation, duration: 0.8)
 
         case .Nothing:
-            queue.addOperation(self.moviePosterImageView.image = nil, animation: .TransitionCrossDissolve, duration: 0.2)
+            print("Nothing Case for movie \(movie.title)")
+            queue.addOperation(self.moviePosterImageView.image = nil, animation: .TransitionCrossDissolve, duration: 0.6)
         }
     }
     

@@ -63,28 +63,22 @@ final class Movie {
     
     var image: UIImage? {
         
-        print("==============ATTEMPT TO GRAB IMAGE =====================")
-        
         switch imageState {
         case .Loading(let image):
-            if shouldKickOffImageDownload { print("About to call downloadimage yo."); downloadImage() }
+            if shouldKickOffImageDownload { downloadImage() }
             return image
         case .Downloaded(let image):
-            print("Downloaded case")
             return image
         case .NoImage(let image):
-            print("No image case.")
             return image
         case .Nothing:
-            if shouldKickOffImageDownload { print("About to call downloadimage yo from nothing case."); downloadImage() }
-            print("nothing case")
+            if shouldKickOffImageDownload {  downloadImage() }
             return nil
         }
     }
         
     var imageState = MovieImageState() {
         didSet {
-            print("Movie is going to call on its delegate.")
             movieImageDelegate?.imageUpdate(withMovie: self)
         }
     }
@@ -119,8 +113,6 @@ final class Movie {
 extension Movie {
     
     func downloadImage()  {
-        print("Download kicked off.")
-        // TODO: This loadingImage() method call here. I feel like this isn't the best location for this. How often and when will downloadImage() get called?
         self.imageState = .Nothing
         loadingImage()
         guard attemptedToDownloadImage == false else { return }
@@ -134,15 +126,15 @@ extension Movie {
         
         defaultSession.dataTaskWithURL(URL) { data, response, error in
             dispatch_async(dispatch_get_main_queue(),{
-                if error != nil || data == nil { self.imageState = .NoImage(UIImage(imageLiteral: "MoviePoster")) }
+                if error != nil || data == nil { self.noImage() }
                 if data != nil {
                     let image = UIImage(data: data!)
-                    if image == nil { self.imageState = .NoImage(UIImage(imageLiteral: "MoviePoster")) }
-                    self.imageState = .Downloaded(image!)
+                    if image == nil {
+                       self.noImage()
+                    } else {
+                        self.imageState = .Downloaded(image!)
+                    }
                 }
-                
-                
-                
             })
             }.resume()
     }

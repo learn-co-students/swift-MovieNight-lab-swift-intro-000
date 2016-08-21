@@ -34,4 +34,9 @@ class MovieView: UIView {
         contentView.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
     }
     
+    func clearContentsForReUse() {
+        leftBasicMovieView.clearContentsForReUse()
+        rightBasicMovieView.clearContentsForReUse()
+    }
+    
 }

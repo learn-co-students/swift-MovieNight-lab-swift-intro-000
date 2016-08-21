@@ -33,20 +33,17 @@ class MovieTableViewController: UITableViewController {
         tableView.allowsSelection = false
         tableView.backgroundColor = UIColor.clearColor()
         tableView.separatorStyle = .None
-        tableView.showsVerticalScrollIndicator = false
-        
-        print("view did Load is happening.")
-        
+//        tableView.showsVerticalScrollIndicator = false
     }
     
     func searchForMovie() {
         try! movieManager.search(forFilmsWithTitle: searchTerm) { [unowned self] movies, error in
             print("Back in block - \(error)")
-            guard let newMovies = movies else { return }
-            self.movies += newMovies
+            guard var newMovies = movies else { return }
+            newMovies += self.movies
+            self.movies = []
+            self.movies = newMovies
         }
-
-        
         
     }
     
@@ -63,7 +60,6 @@ class MovieTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Movie count is \(movies.count)")
         return movies.count % 2 == 0 ? movies.count / 2 : (movies.count / 2) + 1
     }
 
