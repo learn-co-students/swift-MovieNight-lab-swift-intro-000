@@ -31,7 +31,7 @@ final class Queue {
         performingOperations = true
         let (operation, animation, duration) = operations.first!
         
-        UIView.transitionWithView(imageView, duration: duration, options: animation, animations: operation) { _ in
+        UIView.transitionWithView(imageView, duration: duration, options: [animation, .AllowUserInteraction], animations: operation) { _ in
             if !self.operations.isEmpty {
             _ = self.operations.removeFirst()
             self.performingOperations = false

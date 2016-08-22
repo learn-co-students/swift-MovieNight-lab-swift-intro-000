@@ -38,11 +38,11 @@ typealias JSONSearchDictionary = [String : [[String : String]]]
 
 extension MovieManager {
     
-    func search(forFilm film: String, withHandler handler: (Movie?, MovieError?) -> Void) throws {
+    func search(forFilmWithID film: String, withHandler handler: (Movie?, MovieError?) -> Void) throws {
         guard let urlString = film.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             else { throw MovieError.BadSearchString("Unable to encode \(film) to use within our search.") }
         
-        guard let searchURL = NSURL(string: "http://www.omdbapi.com/?t=\(urlString)&y=&plot=short&r=json")
+        guard let searchURL = NSURL(string: "http://www.omdbapi.com/?i=\(urlString)&plot=full&r=json")
             else { throw MovieError.BadSearchURL("Unable to create URL with the search term: \(film)") }
         
         defaultSession.dataTaskWithURL(searchURL) { [unowned self] data, response, error in
@@ -64,7 +64,7 @@ extension MovieManager {
         guard let urlString = title.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             else { throw MovieError.BadSearchString("Unable to encode \(title) to use within our search.") }
         
-        guard let searchURL = NSURL(string: "http://www.omdbapi.com/?s=\(urlString)&y=&plot=short&r=json")
+        guard let searchURL = NSURL(string: "http://www.omdbapi.com/?s=\(urlString)&y=&plot=full&r=json")
             else { throw MovieError.BadSearchURL("Unable to create URL with the search term: \(title)") }
         
         defaultSession.dataTaskWithURL(searchURL) { [unowned self] data, response, error in

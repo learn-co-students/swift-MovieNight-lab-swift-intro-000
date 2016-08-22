@@ -21,6 +21,7 @@ final class Movie {
     let year: String
     let imdbID: String
     let posterURLString: String?
+    var hasFullInfo: Bool = false
     
     var rated: String = "No Rating"
     var released: String = "No Release Date"
@@ -135,3 +136,43 @@ extension Movie {
     }
     
 }
+
+
+// MARK: Update Info
+
+extension Movie {
+    
+    func updateInfo(handler handler: (Bool) -> Void) throws {
+        
+        let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+
+        guard let urlString = imdbID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            else { throw MovieError.BadSearchString("Unable to encode \(title) to use within our search.") }
+        
+        guard let searchURL = NSURL(string: "http://www.omdbapi.com/?i=\(urlString)&plot=full&r=json&tomatoes=true")
+            else { throw MovieError.BadSearchURL("Unable to create URL with the search term: \(title)") }
+        
+        defaultSession.dataTaskWithURL(searchURL) { [unowned self] data, response, error in
+            dispatch_async(dispatch_get_main_queue(),{
+                if error != nil { handler(false) }
+                if data == nil { handler(false) }
+                
+                guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
+                    else { handler(false); return }
+            
+                self.rated = jsonResponse["Rated"] ?? "No Rating"
+                self.released = jsonResponse["Released"] ?? "No Release Date"
+                self.director = jsonResponse["Director"] ?? "No Director"
+                self.imdbRating = jsonResponse["imdbRating"] ?? "N/A"
+                self.tomatoMeter = jsonResponse["tomatoMeter"] ?? "N/A"
+                self.plot = jsonResponse["Plot"] ?? "No Plot"
+                
+                self.hasFullInfo = true
+
+                handler(true)
+            })
+            }.resume()
+    }
+    
+}
+

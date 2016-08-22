@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tJE-0c-t2u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gAS-fJ-1Zx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Movie Table View Controller-->
+        <!--Movies-->
         <scene sceneID="aNE-as-YRu">
             <objects>
                 <tableViewController id="GEb-Fq-Hgo" customClass="MovieTableViewController" customModule="MovieSong" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,7 +46,7 @@
                             <outlet property="delegate" destination="GEb-Fq-Hgo" id="0is-4S-rEe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="MI8-yJ-CUt">
+                    <navigationItem key="navigationItem" title="Movies" id="MI8-yJ-CUt">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="taq-jc-iXc">
                             <connections>
                                 <segue destination="FsV-DS-ntg" kind="presentation" identifier="SearchSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="nba-4h-Fuk"/>
@@ -57,6 +56,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="searchButton" destination="taq-jc-iXc" id="n4Q-lc-nEn"/>
+                        <segue destination="tJE-0c-t2u" kind="presentation" identifier="MovieDetail" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="rPE-tr-I5I"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ofl-BR-BEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -81,11 +81,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="j5l-0I-51t">
                                         <rect key="frame" x="0.0" y="0.0" width="262" height="133"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfl-8P-0Jt">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Film Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfl-8P-0Jt">
                                                 <rect key="frame" x="16" y="16" width="230" height="43"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                <color key="textColor" red="0.93725490196078431" green="0.43529411764705883" blue="0.094117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="0.85882352939999995" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <size key="shadowOffset" width="2" height="1"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CYO-3U-olb">
                                                 <rect key="frame" x="16" y="74" width="230" height="43"/>
@@ -128,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="1856.5" y="446.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Detail View Controller-->
         <scene sceneID="WCQ-oD-eYS">
             <objects>
-                <viewController id="tJE-0c-t2u" sceneMemberID="viewController">
+                <viewController id="tJE-0c-t2u" customClass="MovieDetailViewController" customModule="MovieSong" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6iK-0I-Mvx"/>
                         <viewControllerLayoutGuide type="bottom" id="mgt-Xf-q03"/>
@@ -140,23 +142,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0p-cr-8c0">
-                                <rect key="frame" x="24" y="67" width="327" height="534"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0p-cr-8c0">
+                                <rect key="frame" x="16" y="87" width="343" height="466"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Star Wars" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3c-Xt-7NB">
-                                        <rect key="frame" x="8" y="8" width="311" height="51"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="44"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star Wars" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="n3c-Xt-7NB">
+                                        <rect key="frame" x="8" y="8" width="327" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="mIp-E0-pxl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="z81-bl-FLN">
-                                        <rect key="frame" x="147" y="67" width="172" height="186"/>
+                                        <rect key="frame" x="153" y="52" width="182" height="177"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eDo-WK-fy4">
-                                                <rect key="frame" x="0.0" y="0.0" width="172" height="89"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="182" height="89"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="George Lucas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od6-TA-iZj">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172" height="27"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="George Lucas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od6-TA-iZj">
+                                                        <rect key="frame" x="0.0" y="0.0" width="182" height="27"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                                         <color key="textColor" red="1" green="0.92156862750000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -164,7 +170,7 @@
                                                         <size key="shadowOffset" width="2" height="1"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="August 2, 1974" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTY-4M-kXD">
-                                                        <rect key="frame" x="0.0" y="31" width="172" height="27"/>
+                                                        <rect key="frame" x="0.0" y="31" width="182" height="27"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                                         <color key="textColor" red="1" green="0.92156862750000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -172,7 +178,7 @@
                                                         <size key="shadowOffset" width="2" height="1"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rated R" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PK-ye-Gbw">
-                                                        <rect key="frame" x="0.0" y="62" width="172" height="27"/>
+                                                        <rect key="frame" x="0.0" y="62" width="182" height="27"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                                         <color key="textColor" red="1" green="0.92156862750000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -181,13 +187,13 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aSz-Zc-hkw">
-                                                <rect key="frame" x="0.0" y="160" width="172" height="26"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aSz-Zc-hkw">
+                                                <rect key="frame" x="0.0" y="151" width="182" height="26"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="imdb: 9.4 / rt: 90%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIt-Bj-bkN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="172" height="26"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="182" height="26"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
-                                                        <color key="textColor" red="0.52156862745098043" green="0.77647058823529413" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="1" green="0.92156862750000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <size key="shadowOffset" width="2" height="1"/>
@@ -196,19 +202,21 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-XO-Lzc">
-                                        <rect key="frame" x="8" y="271" width="311" height="255"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="746" translatesAutoresizingMaskIntoConstraints="NO" id="AX5-Gc-7hU">
+                                        <rect key="frame" x="8" y="52" width="137" height="177"/>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="248" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rVI-XO-Lzc">
+                                        <rect key="frame" x="8" y="237" width="327" height="221"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="MoviePoster" translatesAutoresizingMaskIntoConstraints="NO" id="AX5-Gc-7hU">
-                                        <rect key="frame" x="8" y="67" width="131" height="196"/>
-                                    </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.47843137254901963" green="0.52941176470588236" blue="0.62352941176470589" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.4039215686" blue="0.55294117649999996" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="AX5-Gc-7hU" firstAttribute="width" secondItem="I0p-cr-8c0" secondAttribute="width" multiplier="0.4" id="7Yj-in-xuS"/>
                                     <constraint firstItem="AX5-Gc-7hU" firstAttribute="leading" secondItem="I0p-cr-8c0" secondAttribute="leading" constant="8" id="8GX-Oe-8a5"/>
@@ -230,18 +238,28 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="I0p-cr-8c0" firstAttribute="height" secondItem="dEN-O8-Amb" secondAttribute="height" multiplier="0.8" id="Hsd-JU-WwO"/>
+                            <constraint firstItem="I0p-cr-8c0" firstAttribute="height" secondItem="dEN-O8-Amb" secondAttribute="height" multiplier="0.7" id="Hsd-JU-WwO"/>
                             <constraint firstItem="I0p-cr-8c0" firstAttribute="centerX" secondItem="dEN-O8-Amb" secondAttribute="centerX" id="QMG-tu-CQA"/>
-                            <constraint firstItem="I0p-cr-8c0" firstAttribute="centerY" secondItem="dEN-O8-Amb" secondAttribute="centerY" id="i3u-VR-RTh"/>
-                            <constraint firstItem="I0p-cr-8c0" firstAttribute="trailing" secondItem="dEN-O8-Amb" secondAttribute="trailingMargin" constant="-8" id="iKG-W3-QrJ"/>
-                            <constraint firstItem="I0p-cr-8c0" firstAttribute="leading" secondItem="dEN-O8-Amb" secondAttribute="leadingMargin" constant="8" id="lQ1-1S-iQi"/>
+                            <constraint firstItem="I0p-cr-8c0" firstAttribute="centerY" secondItem="dEN-O8-Amb" secondAttribute="centerY" multiplier="0.96" id="i3u-VR-RTh"/>
+                            <constraint firstItem="I0p-cr-8c0" firstAttribute="trailing" secondItem="dEN-O8-Amb" secondAttribute="trailing" constant="-16" id="iKG-W3-QrJ"/>
+                            <constraint firstItem="I0p-cr-8c0" firstAttribute="leading" secondItem="dEN-O8-Amb" secondAttribute="leading" constant="16" id="lQ1-1S-iQi"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="contentView" destination="I0p-cr-8c0" id="2IO-Bg-bHR"/>
+                        <outlet property="criticRatingLabel" destination="jIt-Bj-bkN" id="XUo-eK-znH"/>
+                        <outlet property="directorLabel" destination="od6-TA-iZj" id="V5W-j9-7hB"/>
+                        <outlet property="moviePosterImageView" destination="AX5-Gc-7hU" id="DzB-g1-cS3"/>
+                        <outlet property="movieTitleLabel" destination="n3c-Xt-7NB" id="cb1-zR-1oz"/>
+                        <outlet property="plotTextView" destination="rVI-XO-Lzc" id="hU6-3Q-JGs"/>
+                        <outlet property="ratingLabel" destination="3PK-ye-Gbw" id="90T-yw-4Ok"/>
+                        <outlet property="releaseDateLabel" destination="MTY-4M-kXD" id="WzG-3x-57m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dxg-un-5j6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1856.5" y="1205.5"/>
+            <point key="canvasLocation" x="1856.5" y="1292.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UpN-cR-WJX">
@@ -262,7 +280,4 @@
             <point key="canvasLocation" x="813" y="447"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="MoviePoster" width="229" height="343"/>
-    </resources>
 </document>

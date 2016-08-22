@@ -109,13 +109,13 @@
 				7D37529E1D69F81E004D5999 /* MovieImageState.swift */,
 				7D8FD72C1D67DACB0074E1C3 /* MovieManager.swift */,
 				7D48C6501D68A1FF001B0C55 /* Movie.swift */,
+				7D46A6CF1D6A66C400356D61 /* MovieDetailViewController.swift */,
 				7D48C6581D68BDAA001B0C55 /* MovieTableViewController.swift */,
 				7D48C6561D68BD0E001B0C55 /* MovieTableViewCell.swift */,
 				7D48C65A1D68CF42001B0C55 /* Queue.swift */,
 				7D48C65C1D68FE5B001B0C55 /* SearchViewController.swift */,
 				7DFD36411D6A4D1700A1FD16 /* ImageViewExtension.swift */,
 				7D8FD72B1D67BFC80074E1C3 /* Supporting Files */,
-				7D46A6CF1D6A66C400356D61 /* MovieDetailViewController.swift */,
 			);
 			path = MovieSong;
 			sourceTree = "<group>";

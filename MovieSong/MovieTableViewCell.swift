@@ -11,6 +11,12 @@ import UIKit
 class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet weak var movieView: MovieView!
+    var movieSelectedDelegate: MovieSelected? {
+        didSet {
+            movieView.leftBasicMovieView.movieSelectedDelegate = movieSelectedDelegate
+            movieView.rightBasicMovieView.movieSelectedDelegate = movieSelectedDelegate
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -15,7 +15,6 @@ class MovieTableViewController: UITableViewController {
     
     var searchTerm: String = String() {
         didSet {
-            title = searchTerm
             searchForMovie()
         }
     }
@@ -73,6 +72,8 @@ extension MovieTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieTableViewCell
         
+        if cell.movieSelectedDelegate == nil { cell.movieSelectedDelegate = self }
+        
         if indexPath.row == 0 {
             let firstFilm = movies[indexPath.row]
             cell.movieView.leftBasicMovieView.movie = firstFilm
@@ -103,19 +104,19 @@ extension MovieTableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let identifier = segue.identifier else { return }
-        
         switch identifier {
         case "SearchSegue":
             let destVC = segue.destinationViewController as! SearchViewController
             destVC.searchDelegate = self
         case "MovieDetail":
-            break
+            let destVC = segue.destinationViewController as! MovieDetailViewController
+            let chosenMovie = sender as! Movie
+            destVC.movie = chosenMovie
         default:
             break
         }
-        
-    
     }
+    
 }
 
 
