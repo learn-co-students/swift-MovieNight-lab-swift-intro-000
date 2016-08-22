@@ -88,7 +88,7 @@ extension MovieDetailViewController {
     
     func retrieveInfoForMovie() {
         try! movie.updateInfo { [unowned self] success in
-            if success {
+            if success && self.movieTitleLabel != nil {
                 self.setupEverything()
             }
         }

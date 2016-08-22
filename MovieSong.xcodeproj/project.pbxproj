@@ -105,9 +105,9 @@
 		7D01CE591D6A87E100E80076 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7D46A6CF1D6A66C400356D61 /* MovieDetailViewController.swift */,
 				7D48C6581D68BDAA001B0C55 /* MovieTableViewController.swift */,
 				7D48C65C1D68FE5B001B0C55 /* SearchViewController.swift */,
+				7D46A6CF1D6A66C400356D61 /* MovieDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

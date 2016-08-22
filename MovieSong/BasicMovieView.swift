@@ -95,13 +95,12 @@ extension BasicMovieView {
 extension BasicMovieView: MovieImageDelegate {
     
     func imageUpdate(withMovie movie: Movie) {
-        //        if displayImageDelegate?.canDisplayImage(self) == false { print("Cant display dude"); return }
+        // TODO: Remove this comment. Look to see if indexPath is still on screen. Maybe? It's working without it probably because of some saftey check I'm doing elsewhere.
         switch movie.imageState {
         case .Loading:
             
             let images = (1...8).map { index -> UIImage in
                 let imageName = "Loading" + String(index)
-                print("Image name is \(imageName)")
                 let image = UIImage(imageLiteral: imageName)
                 return image
             }

@@ -32,6 +32,11 @@ class MovieTableViewController: UITableViewController {
         tableView.separatorStyle = .None
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        performSegueWithIdentifier("SearchSegue", sender: nil)
+    }
+    
 }
 
 // MARK: Movie Selected
