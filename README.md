@@ -57,6 +57,11 @@ JSON is built on two structures:
 
 JSON in Swift is recognized as [`String` : `AnyObject?`]. It's a dictionary where the `key`'s are of type `String` and the `value`'s are of type `AnyObject?`. But we can be even more specific when we're the ones communicating with the API within our code. We can narrow down the `AnyObject?` type to what the type actually is. How do we know what type it is? We'll get there.
 
+What API are we working with here? [OMDb API](http://www.omdbapi.com)--The OMDb API is a free web service to obtain movie information, all content and images on the site are contributed and maintained by their users.
+
+Here's how OMDb (our API we're working with) gives us back one movie. It's in the form of a dictionary where the `key`'s are of type `String` and the `value`'s are of type `String`.
+
+[`String` : `String`]
 
 ```swift
 { 	
@@ -67,6 +72,18 @@ JSON in Swift is recognized as [`String` : `AnyObject?`]. It's a dictionary wher
  	"Poster" : "http://ia.media-imdb.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg" 
 }
 ```
+
+First, do the one thing I know you want to do right now. Copy and paste that URL into a browser.
+
+**1.** Create the necessary instance properties in the `Movie.swift` which will ultimately store the various `value`'s from this dictionary. You can exclude creating an instance property which will deal with the "movie" `value` from the "Type" `key`. The others we are definitely interested in. What type should our instance properties be? They should all be of type `String`.  
+* `title` of type `String`
+* `year` of type `String`
+* `imdbID` of type `String`
+* `posterURLString` of type `String`
+
+**2.** To make our lives easier, and to make it easy to instantiate a `Movie` object, lets create an initializer within our `Movie` class that takes in as an argument a dictionary of type [`String` : `String`]. That way, within our initializer--we can parse through this dictionary (knowing that we know what the `key`'s are). Most API's within their documentation will show you what the `JSON` looks like--that way you know exactly what `key`'s you're dealing with.
+
+Within the implementation of this initializer, using the `key`'s in our Jurassic Park example above, assign `value`'s to the instance properties you just defined in the prior instruction. But not just any `value`. Utilize the dictionary argument which is of type [`String` : `String`], you will be betting back a dictionary that looks _identical_ to the Jurassic Park example above. The various `key`'s are "Title", "Year", "imdbID", "Type", and "Poster".
 
 
 
