@@ -45,7 +45,7 @@ There is some data that lives in the cloud (some server) and our app needs to be
 
 I need all movies titled "Horse Bucket".
 
-The server does its thing going through its file system to locate all movies titled "Rocky" It then gives it back to us in one chunk. The process isn't instantaneous, we're dealing with the Web now. There are multiple variables at stake (one of them being your internet connection).
+The server does its thing going through its file system to locate all movies titled "Horse Bucket" It then gives it back to us in one chunk. The process isn't instantaneous, we're dealing with the Web now. There are multiple variables at stake (one of them being your internet connection).
 
 OK, so we've heard back from our server and they've given us what we wanted. We got back all movies titled "Horse Bucket"
 
