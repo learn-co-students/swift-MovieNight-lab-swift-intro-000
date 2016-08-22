@@ -59,11 +59,13 @@ JSON in Swift is recognized as [`String` : `AnyObject?`]. It's a dictionary wher
 
 
 ```swift
-{ 	"Title" : "Jurassic Park",
+{ 	
+	"Title" : "Jurassic Park",
  	"Year" : "1993",
  	"imdbID" : "tt0107290",
  	"Type" : "movie",
- 	"Poster" : "http://ia.media-imdb.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg" }
+ 	"Poster" : "http://ia.media-imdb.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg" 
+}
 ```
 
 
