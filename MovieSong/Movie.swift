@@ -146,9 +146,7 @@ extension Movie {
                 
                 guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
                     else { handler(false); return }
-                
-                print(jsonResponse)
-            
+                            
                 self.rated = jsonResponse["Rated"] ?? "No Rating"
                 self.released = jsonResponse["Released"] ?? "No Release Date"
                 self.director = jsonResponse["Director"] ?? "No Director"
