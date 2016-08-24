@@ -75,23 +75,72 @@ Here's how OMDb (our API we're working with) gives us back one movie. It's in th
 
 First, do the one thing I know you want to do right now. Copy and paste that URL into a browser.
 
-**1.** Create the necessary instance properties in the `Movie.swift` which will ultimately store the various `value`'s from this dictionary. You can exclude creating an instance property which will deal with the "movie" `value` from the "Type" `key`. The others we are definitely interested in. What type should our instance properties be? They should all be of type `String`.  
+**1.** Create the necessary instance properties in the `Movie.swift` which will ultimately store the various `value`'s from this dictionary. You can exclude creating an instance property which will deal with the "movie" `value` from the "Type" `key`. The others we are definitely interested in. What type should our instance properties be? They should be as follows: 
 * `title` of type `String`
 * `year` of type `String`
 * `imdbID` of type `String`
-* `posterURLString` of type `String`
+* `posterURLString` of type `String?` <-- notice that this is an optional `String`, the others aren't.
 
 **2.** To make our lives easier, and to make it easy to instantiate a `Movie` object, lets create an initializer within our `Movie` class that takes in as an argument a dictionary of type [`String` : `String`]. That way, within our initializer--we can parse through this dictionary (knowing that we know what the `key`'s are). Most API's within their documentation will show you what the `JSON` looks like--that way you know exactly what `key`'s you're dealing with.
 
 Within the implementation of this initializer, using the `key`'s in our Jurassic Park example above, assign `value`'s to the instance properties you just defined in the prior instruction. But not just any `value`. Utilize the dictionary argument which is of type [`String` : `String`], you will be betting back a dictionary that looks _identical_ to the Jurassic Park example above. The various `key`'s are "Title", "Year", "imdbID", "Type", and "Poster".
 
+There's one caveat. When you look to retrieve a value from a dictionary, for example if we attempt to do the following:
 
+```swift
+let movieJSON = [
+    "Title" : "Jurassic Park",
+    "Year" : "1993"
+]
+        
+let movieTitle = movieJSON["Title"]
+```
 
+What type is `movieTitle` here in my example? It's of type `String?`, _not_ `String`. Because when you retrieve a value from a dictionary, it's not guaranteed that you will get back something.
 
+```swift
+let movieLikes = movieJSON["Likes"]
+```
 
+`movieLikes` in this example is also of type `String?`. We either will get back a `String` or we won't in that it will be `nil`, hence why it's an optional `String`. So it's on us (the developer) to check to see that what we got back is indeed not `nil`. If it's not `nil`, then we can proceed to assigning the unwrapped value to our instance property. Like so:
 
+```swift
+if let movieTitle = movieJSON["Title"] {
+   title = movieTitle
+}
+````
 
+This is assigning the unwrapped value (if it was able to unwrap it in that `movieJSON["Title"]` returned back to us a value that was not `nil`, if it was not `nil`, the value (which is of type `String`) has been assigned to this local constant we've named `movieTitle`--so within the scope of those curly braces we will have access to a constant called `movieTitle` of type `String`. Our `title` instance property is of type `String`--so we should be able to assign this value to it with no problem.
 
+One more problem. What if `movieJSON["Title"]` returns back to us a `nil` value, what are we to do? We can write in an `else` clause like so:
+
+```swift
+if let movieTitle = movieJSON["Title"] {
+     title = movieTitle
+} else {
+     title = "No Title"
+}
+```
+
+If `movieJSON["Title"]` returns back to us a `nil` value in that it was unable to retrieve a value for the key "Title", then we enter this `else` statement. Inside that else statement we're assigning some default value to this instance property. The default value is a `String` literal, "No Title".  This solves our problem.
+
+But.....this is a lot of code to write for a simple operation, and you're not just looking to do this for one key-value pair in this dictionary, we're looking to assign values to all four of our instance properties we've made. This would be some ugly looking code. There's an answer.
+
+Here's a great word for you, Nil Coalescing. That's our answer--Nil Coalescing. It's something we can do in Swift to handle our `if-else` statement above more elegantly. It works in the same way, if there's a value in this optional, unwrap it and return it back to me, else return back this default value. Here's what it looks like:
+
+```swift
+title = movieJSON["Title"] ?? "No Title"
+```
+
+This does the _exact_ same thing as our `if-else` statement above. If `movieJSON["Title"]` returns back a value that is not `nil`, then we will assign that value to our `title` instance property. If not (in that it returns back to us a `nil` value, then we will return back the value "No Title" and assign that value to our `title` instance property.
+
+Within your `init` function, do this for all of your instance properties except the `posterURLString` coming up with your own phrase for what happens if the value returns back `nil`. What do I mean, except the `posterURLString`. I want you to assign the value from the dictionary, storing it to our `posterURLString` _not_ using nil coalescing. I want this instance property to be `nil` if in fact this dictionary doesn't have a value for the key "Poster"--if the dictionary returns back `nil`, I want our `posterURLString` instance property to be `nil` then. The reason for that is how I decided to download the images at this URL later on. If this is `nil`, obviously I make no attempt to download the image, I display a default image instead. You can argue then that I should probably do that right here and now though! You might be right!
+
+# TODO: I didn't have them include the following in their init function yet. It's not even part of their init definition yet.
+
+```swift
+self.movieImageDelegate = movieImageDelegate
+```
 
 
 

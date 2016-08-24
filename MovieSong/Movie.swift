@@ -41,19 +41,6 @@ final class Movie {
         }
     }
     
-    init(json: JSONResponseDictionary, movieImageDelegate: MovieImageDelegate? = nil) {
-        title = json["Title"] ?? "No Title"
-        year = json["Year"] ?? "No Year"
-        rated = json["Rated"] ?? "No Rating"
-        released = json["Released"] ?? "No Release Date"
-        director = json["Director"] ?? "No Director"
-        posterURLString = json["Poster"]
-        imdbRating = json["imdbRating"] ?? "N/A"
-        tomatoMeter = json["tomatoMeter"] ?? "N/A"
-        imdbID = json["imdbID"] ?? "N/A"
-        plot = json["Plot"] ?? "No Plot"
-        self.movieImageDelegate = movieImageDelegate
-    }
     
     init(searchJSON: JSONResponseDictionary, movieImageDelegate: MovieImageDelegate? = nil) {
         title = searchJSON["Title"] ?? "No Title"
