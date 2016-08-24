@@ -163,26 +163,26 @@ self.movieImageDelegate = movieImageDelegate
 	"Plot":"Huge advancements in scientific technology have enabled a mogul to create an island full of living dinosaurs. John Hammond has invited four individuals, along with his two grandchildren, to join him at Jurassic Park. But will everything go according to plan? A park employee attempts to steal dinosaur embryos, critical security systems are shut down and it now becomes a race for survival with dinosaurs roaming freely over the island.","Language":"English, Spanish","Country":"USA","Awards":"Won 3 Oscars. Another 28 wins & 17 nominations.",
 	"Poster":"http://ia.media-imdb.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg",
 	"Metascore":"68",
-	"imdbRating":"8.1"
-	,"imdbVotes":"613,972"
-	,"imdbID":"tt0107290"
-	,"Type":"movie"
-	,"tomatoMeter":"93"
-	,"tomatoImage":"certified"
-	,"tomatoRating":"8.3"
-	,"tomatoReviews":"117"
-	,"tomatoFresh":"109"
-	,"tomatoRotten":"8"
-	,"tomatoConsensus":"Jurassic Park is a spectacle of special effects and life-like animatronics, with some of Spielberg's best sequences of sustained awe and sheer terror since Jaws."
-	,"tomatoUserMeter":"91"
-	,"tomatoUserRating":"3.6"
-	,"tomatoUserReviews":"1066442"
-	,"tomatoURL":"http://www.rottentomatoes.com/m/jurassic_park/",
-	"DVD":"10 Oct 2000"
-	,"BoxOffice":"N/A"
-	,"Production":"Universal City Studios"
-	,"Website":"http://www.jurassicpark.com/maingate_flash.html"
-	,"Response":"True"
+	"imdbRating":"8.1",
+	"imdbVotes":"613,972",
+	"imdbID":"tt0107290",
+	"Type":"movie",
+	"tomatoMeter":"93",
+	"tomatoImage":"certified",
+	"tomatoRating":"8.3",
+	"tomatoReviews":"117",
+	"tomatoFresh":"109",
+	"tomatoRotten":"8",
+	"tomatoConsensus":"Jurassic Park is a spectacle of special effects and life-like animatronics, with some of Spielberg's best sequences of sustained awe and sheer terror since Jaws.",
+	"tomatoUserMeter":"91",
+	"tomatoUserRating":"3.6",
+	"tomatoUserReviews":"1066442",
+	"tomatoURL":"http://www.rottentomatoes.com/m/jurassic_park/",
+	"DVD":"10 Oct 2000",
+	"BoxOffice":"N/A",
+	"Production":"Universal City Studios",
+	"Website":"http://www.jurassicpark.com/maingate_flash.html",
+	"Response":"True"
 }
 ```
 
