@@ -75,13 +75,16 @@ Here's how OMDb (our API we're working with) gives us back one movie. It's in th
 
 First, do the one thing I know you want to do right now. Copy and paste that URL into a browser.
 
-**1.** Create the necessary instance properties in the `Movie.swift` which will ultimately store the various `value`'s from this dictionary. You can exclude creating an instance property which will deal with the "movie" `value` from the "Type" `key`. The others we are definitely interested in. What type should our instance properties be? They should be as follows: 
+# 1
+ Create the necessary instance properties in the `Movie.swift` which will ultimately store the various `value`'s from this dictionary. You can exclude creating an instance property which will deal with the "movie" `value` from the "Type" `key`. The others we are definitely interested in. What type should our instance properties be? They should be as follows: 
 * `title` of type `String`
 * `year` of type `String`
 * `imdbID` of type `String`
 * `posterURLString` of type `String?` <-- notice that this is an optional `String`, the others aren't.
 
-**2.** To make our lives easier, and to make it easy to instantiate a `Movie` object, lets create an initializer within our `Movie` class that takes in as an argument a dictionary of type [`String` : `String`]. That way, within our initializer--we can parse through this dictionary (knowing that we know what the `key`'s are). Most API's within their documentation will show you what the `JSON` looks like--that way you know exactly what `key`'s you're dealing with.
+
+# 2
+ To make our lives easier, and to make it easy to instantiate a `Movie` object, lets create an initializer within our `Movie` class that takes in as an argument a dictionary of type [`String` : `String`]. That way, within our initializer--we can parse through this dictionary (knowing that we know what the `key`'s are). Most API's within their documentation will show you what the `JSON` looks like--that way you know exactly what `key`'s you're dealing with.
 
 Within the implementation of this initializer, using the `key`'s in our Jurassic Park example above, assign `value`'s to the instance properties you just defined in the prior instruction. But not just any `value`. Utilize the dictionary argument which is of type [`String` : `String`], you will be betting back a dictionary that looks _identical_ to the Jurassic Park example above. The various `key`'s are "Title", "Year", "imdbID", "Type", and "Poster".
 
@@ -141,6 +144,48 @@ Within your `init` function, do this for all of your instance properties except 
 ```swift
 self.movieImageDelegate = movieImageDelegate
 ```
+
+# 3
+
+### TODO: Have them create the method to deal with this response object only pulling out what's necessary. What's necessaryis listed as instance properties in my complete Xcode project - Movie.swift file.
+
+```swift
+{
+	"Title":"Jurassic Park",
+	"Year":"1993",
+	"Rated":"PG-13",
+	"Released":"11 Jun 1993",
+	"Runtime":"127 min",
+	"Genre":"Adventure,	 Sci-Fi, Thriller",
+	"Director":"Steven Spielberg",
+	"Writer":"Michael Crichton (novel), Michael Crichton (screenplay), David Koepp (screenplay)",
+	"Actors":"Sam Neill, Laura Dern, Jeff Goldblum, Richard Attenborough",
+	"Plot":"Huge advancements in scientific technology have enabled a mogul to create an island full of living dinosaurs. John Hammond has invited four individuals, along with his two grandchildren, to join him at Jurassic Park. But will everything go according to plan? A park employee attempts to steal dinosaur embryos, critical security systems are shut down and it now becomes a race for survival with dinosaurs roaming freely over the island.","Language":"English, Spanish","Country":"USA","Awards":"Won 3 Oscars. Another 28 wins & 17 nominations.",
+	"Poster":"http://ia.media-imdb.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg",
+	"Metascore":"68",
+	"imdbRating":"8.1"
+	,"imdbVotes":"613,972"
+	,"imdbID":"tt0107290"
+	,"Type":"movie"
+	,"tomatoMeter":"93"
+	,"tomatoImage":"certified"
+	,"tomatoRating":"8.3"
+	,"tomatoReviews":"117"
+	,"tomatoFresh":"109"
+	,"tomatoRotten":"8"
+	,"tomatoConsensus":"Jurassic Park is a spectacle of special effects and life-like animatronics, with some of Spielberg's best sequences of sustained awe and sheer terror since Jaws."
+	,"tomatoUserMeter":"91"
+	,"tomatoUserRating":"3.6"
+	,"tomatoUserReviews":"1066442"
+	,"tomatoURL":"http://www.rottentomatoes.com/m/jurassic_park/",
+	"DVD":"10 Oct 2000"
+	,"BoxOffice":"N/A"
+	,"Production":"Universal City Studios"
+	,"Website":"http://www.jurassicpark.com/maingate_flash.html"
+	,"Response":"True"
+}
+```
+
 
 
 

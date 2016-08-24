@@ -21,8 +21,8 @@ final class Movie {
     let year: String
     let imdbID: String
     let posterURLString: String?
-    var hasFullInfo: Bool = false
     
+    var hasFullInfo: Bool = false
     var rated: String = "No Rating"
     var released: String = "No Release Date"
     var director: String = "No Director"
@@ -146,6 +146,8 @@ extension Movie {
                 
                 guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
                     else { handler(false); return }
+                
+                print(jsonResponse)
             
                 self.rated = jsonResponse["Rated"] ?? "No Rating"
                 self.released = jsonResponse["Released"] ?? "No Release Date"

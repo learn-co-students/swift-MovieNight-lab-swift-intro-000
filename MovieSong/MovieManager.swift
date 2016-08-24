@@ -53,7 +53,7 @@ extension MovieManager {
                 guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
                     else { handler(nil, MovieError.BadJSONconversion("Unable to convert data to JSON")); return }
                 
-                let movie = Movie(json: jsonResponse, movieImageDelegate: self.delegate)
+                let movie = Movie(searchJSON: jsonResponse, movieImageDelegate: self.delegate)
                 
                 handler(movie, nil)
             })
