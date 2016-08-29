@@ -22,7 +22,6 @@ final class Movie {
     let imdbID: String
     let posterURLString: String?
     
-    var hasFullInfo: Bool = false
     var rated: String = "No Rating"
     var released: String = "No Release Date"
     var director: String = "No Director"
@@ -30,6 +29,7 @@ final class Movie {
     var tomatoMeter: String = "N/A"
     var plot: String = "No Plot"
     
+    var hasFullInfo: Bool = false
     var attemptedToDownloadImage = false
     var movieImageDelegate: MovieImageDelegate?
     var shouldKickOffImageDownload: Bool { return shouldKickOffTheDownload() }
@@ -147,18 +147,22 @@ extension Movie {
                 guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
                     else { handler(false); return }
                             
-                self.rated = jsonResponse["Rated"] ?? "No Rating"
-                self.released = jsonResponse["Released"] ?? "No Release Date"
-                self.director = jsonResponse["Director"] ?? "No Director"
-                self.imdbRating = jsonResponse["imdbRating"] ?? "N/A"
-                self.tomatoMeter = jsonResponse["tomatoMeter"] ?? "N/A"
-                self.plot = jsonResponse["Plot"] ?? "No Plot"
-                
+                self.updateFilmInfo(jsonResponse)
+            
                 self.hasFullInfo = true
 
                 handler(true)
             })
             }.resume()
+    }
+    
+    func updateFilmInfo(jsonResponse: [String : String])  {
+        rated = jsonResponse["Rated"] ?? "No Rating"
+        released = jsonResponse["Released"] ?? "No Release Date"
+        director = jsonResponse["Director"] ?? "No Director"
+        imdbRating = jsonResponse["imdbRating"] ?? "N/A"
+        tomatoMeter = jsonResponse["tomatoMeter"] ?? "N/A"
+        plot = jsonResponse["Plot"] ?? "No Plot"
     }
     
 }

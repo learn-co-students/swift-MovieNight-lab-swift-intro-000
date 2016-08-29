@@ -1,4 +1,4 @@
-# Final Project
+# FINAL PROJECT
 
 ![](https://s3.amazonaws.com/learn-verified/MovieSearchBilb.jpg)
 
@@ -13,7 +13,7 @@ The crownless again shall be king -[Bilbo Baggins](https://en.wikipedia.org/wiki
 
 ---
 
-# Movie Search
+# Movie Search Introduction
 
 ![](https://s3.amazonaws.com/learn-verified/MovieSearchFinalImage.png)
 
@@ -33,7 +33,7 @@ What you will be responsible for making (please don't begin coding, this is just
 
 ---
 
-# Instructions
+# API Overview
 
 First things first, we need to understand how we can even get movies. Do we create each and every one in code and store it locally to the iPhone? Obviously, no. Would you even have the time to type out every single film in the world. Not only that, what if our user is only interested in searching for "Toy Story".
 
@@ -75,7 +75,8 @@ Here's how OMDb (our API we're working with) gives us back one movie. It's in th
 
 First, do the one thing I know you want to do right now. Copy and paste that URL into a browser.
 
-# 1
+# 1 Movie Instance Properties
+
  Create the necessary instance properties in the `Movie.swift` which will ultimately store the various `value`'s from this dictionary. You can exclude creating an instance property which will deal with the "movie" `value` from the "Type" `key`. The others we are definitely interested in. What type should our instance properties be? They should be as follows: 
 * `title` of type `String`
 * `year` of type `String`
@@ -83,7 +84,8 @@ First, do the one thing I know you want to do right now. Copy and paste that URL
 * `posterURLString` of type `String?` <-- notice that this is an optional `String`, the others aren't.
 
 
-# 2
+# 2. Movie Initializer
+
  To make our lives easier, and to make it easy to instantiate a `Movie` object, lets create an initializer within our `Movie` class that takes in as an argument a dictionary of type [`String` : `String`]. That way, within our initializer--we can parse through this dictionary (knowing that we know what the `key`'s are). Most API's within their documentation will show you what the `JSON` looks like--that way you know exactly what `key`'s you're dealing with.
 
 Within the implementation of this initializer, using the `key`'s in our Jurassic Park example above, assign `value`'s to the instance properties you just defined in the prior instruction. But not just any `value`. Utilize the dictionary argument which is of type [`String` : `String`], you will be betting back a dictionary that looks _identical_ to the Jurassic Park example above. The various `key`'s are "Title", "Year", "imdbID", "Type", and "Poster".
@@ -145,9 +147,7 @@ Within your `init` function, do this for all of your instance properties except 
 self.movieImageDelegate = movieImageDelegate
 ```
 
-# 3
-
-### TODO: Have them create the method to deal with this response object only pulling out what's necessary. What's necessaryis listed as instance properties in my complete Xcode project - Movie.swift file.
+# 3. Update Film Movie Method
 
 ```swift
 {
@@ -188,6 +188,95 @@ self.movieImageDelegate = movieImageDelegate
 	"Response":"True"
 }
 ```
+
+The above is a JSON response object. It's much larger than the one we dealt with earlier--can you guess what type it is? Meaning... is it an Array, is it a Dictionary?
+
+It's a dictionary where the `key`'s are of type `String` and the `value`'s are of type `String`.
+
+How our application works is as follows:
+
+We the app first loads, the user is presented with the option of searching for a film. If they type in lets say the film "Jurassic" they would be met with the following results:
+
+# TODO: Display screenshot of search for the film "Jurassic Park" here.
+
+At this point we are creating multiple `Movie` objects--utilizing the initializer you created in the first instruction. If the `Movie` object is to be displayed on screen, we download its image at the imageURL you stored in the original initializer and display that within the cell. In this initial request (when you type in "Jurassic Park" in the movie search text field)--we're given a list of movies in the [`String` : `AnyObject`] format, which you've been able to work with so far. We asked for you to also store the IMDB id associated with the film within the initializer. Why? Because in this initial _general_ request when you type in "Juarssic" we're given a list of films, but not data specific to just _one_ film. That big json object above is data associated with one specific film.
+
+In order to do that (when working with the API), we have to make another request to IMDB. This time, in our request--we don't want to ask it for "Jurassic Park"--that's too general, we want specific info for a specific film. So how do we do that? Well.. we call up to IMDB asking for more info but we need to provide it with something--we provide it with the IMDB id of the film we want more info on.
+
+Think of it like a phone call. We call up our friend named IMDB and say.. "Hey, I have this ID for a film from your database, can you give me _all_ the info you have on it". So IMDB does its thing which could take under a second, could take a minute, could take FOREVER (foreva eva). Maybe your internet connection is slow, maybe you don't even have an internet connection or maybe IMDB is asleep (server is down).
+
+But when IMDB gets back to you.. it's going to give you back the JSON object of type [`String` : `String`] listed above.
+
+We need to add additionaly instance properties within our `Movie` class. So lets do that:
+
+**Create the following instance properties**: 
+
+* `hasFullInfo` - a variable of type `Bool` with a default value of `false`
+* `rated` - a variable of type `String` with a default value of "No Rating"
+* `released` - a variable of type `String` with a default value of "No Release Date"
+* `director` - a variable of type `String` with a default value of "No Director"
+* `imdbRating` - a variable of type `String` with a default value of "N/A"
+* `tomatoMeter` - a variable of type `String` with a default value of "N'A"
+* `plot` - a variable of type `String` with a default value of "No Plot"
+
+**Create the following method:**
+
+So here's what I want you to do. Create a function named `updateFilmInfo(_:)` which takes in one argument called `jsonResponse` of type [`String` : `String`]. In your implementation of this function, update the appropriate instance properties (you just created) with JSON response object above. You might have to do some digging. The `key`'s you should be using to access the `value`'s have a near identical name to the instance properties you've created (some do, some differ by just the first letter being capitalized)
+
+# 4. Movie Detail View Controller
+
+Quick recap. Our app loads, they're presented with a view that contains a text field. The user types in a film, hits search and that will be where we make our first call up to IMDB asking for all films associated with what was typed in that text field. Thanks to you--we then initialize multiple movie objects and begin to display their posters within multiple table view cells. If a user taps one of these poster images, we should be brought to a screen like this:
+
+![](https://s3.amazonaws.com/learn-verified/MovieSearchJaws.png)
+
+Does it have to look _exactly_ like this? No--but I would like for you to incorporate the following pieces of info relating to the movie in this screenshot:
+
+* Title
+* Movie Poster Image
+* Director
+* Release Date
+* Movie Rating
+* IMDB & Rotten tomatoes rating in one line
+* Movie Plot
+
+In my example, I've utilized the following to tackle this problem:
+
+* `UITextView`
+* Five `UILabel`'s
+* `UIImageView`
+
+
+Have fun with this. Don't be constrained by only having to display what I decided to display here. If you want to display the actors, then create a new instance property within the `Movie` object--and then make sure to assign a value to that instance property within the `updateFilmInfo(_:)` method.
+
+Locate the **Movie Detail View Controller Scene** in the `Main.storyboard` file. This scene's View Controller is where you will be laying out your view (make sure to add constraints). This Movie Detail View Controller has already had its custom class set to the `MovieDetailViewController.swift` file. Create outlets for all your views you've made to this `MovieDetailViewController.swift` file giving these outlets the appropriate names.
+
+After setting up these views and their outlets, head on over to the `MovieDetailViewController.swift` file. Locate the `setupAllTheViews()` function. It will be your job to implement it. You have access to the `movie` instance property on this view controller. This `movie` object here is the one that was selected from the prior screen. At this point, this `movie` object contains all the info we need--so update the various view objects you created outlets for here within this function to equal the various properties on this `movie` object.
+
+If you run your app, things should be looking pretty good (so far). You might notice that there's no way to get back to the prior screen when we get to our Movie Detail View Controller. How can we go back?
+
+# 5. Last Instruction
+
+This is the last instruction given to you in this entire course and I want to thank you for coming along this journey. It's been such an incredible pleasure putting all of these various lessons and readings together, I've hope you enjoyed yourself and learned something along the way.
+
+As a programmer, there are many tools you need to have in your toolkit. One of them is being able to use Google and Stack Overflow. These will become an invaluable tool as you move forward. You will be in a position where you have a question that you can't solve, like "How can I create a round `UIButton`" and you might find some Stack Overflow with an answer from 2011 in Objective-C that you have to transfer over to Swift. Not every question is met with an answer that works. Programming is a struggle--but the reward is incredible. Stick with it, stay focused, trial & error and get to the answer.
+
+So, instead of providing you with detailed instructions on how to do this. The very last instruction you will receive is this:
+
+Figure out a way where you can dismiss the `MovieDetailViewController` when they tap anywhere outside of the movie info being displayed. When they tap outside that view, the `MovieDetailViewController` should dismiss itself so you can continue to tap other movies or search for new ones.
+
+# 6. Fun
+
+Have fun with this. Expand upon it, run it on your iPhone--keep it around with you if anyone ever asks you about a specific movie. I like the idea of incorporating more detailed information on a film. Looking into the other `.swift` files in this project to see how we incorporating searching for a film or how we performed certain animations. 
+
+
+
+
+
+
+
+
+
+
 
 
 

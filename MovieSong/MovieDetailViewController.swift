@@ -66,7 +66,7 @@ extension MovieDetailViewController {
     
     func handleLayoutOnLoad() {
         if movie.hasFullInfo {
-            setupEverything()
+            setupAllTheViews()
         }
         
         if !movie.hasFullInfo {
@@ -74,7 +74,7 @@ extension MovieDetailViewController {
         }
     }
     
-    func setupEverything() {
+    func setupAllTheViews() {
         movieTitleLabel.text = movie.title
         directorLabel.text = movie.director
         releaseDateLabel.text = movie.released
@@ -82,14 +82,16 @@ extension MovieDetailViewController {
         criticRatingLabel.text = "imdb: \(movie.imdbRating) / rt: \(movie.tomatoMeter)%"
         plotTextView.text = movie.plot
         moviePosterImageView.image = movie.image
+        
         plotTextView.scrollRangeToVisible(NSMakeRange(0, 0))
+        
         unHideAllViews()
     }
     
     func retrieveInfoForMovie() {
         try! movie.updateInfo { [unowned self] success in
             if success && self.movieTitleLabel != nil {
-                self.setupEverything()
+                self.setupAllTheViews()
             }
         }
     }

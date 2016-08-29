@@ -112,6 +112,7 @@ extension BasicMovieView: MovieImageDelegate {
         case .NoImage(let image):
             queue.addOperation(self.moviePosterImageView.image = image, duration: 0.6)
         case .Downloaded(let image):
+            // TODO: No longer is there this list of random animations, you should clean this up.
             let animations: [UIViewAnimationOptions] = [.TransitionCurlDown]
             let randomIndex = Int(arc4random_uniform(UInt32(animations.count)))
             let randomAnimation = animations[randomIndex]

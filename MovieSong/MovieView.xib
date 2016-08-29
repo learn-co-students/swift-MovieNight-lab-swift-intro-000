@@ -19,13 +19,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4vl-R0-lBZ">
-                    <rect key="frame" x="0.0" y="18" width="375" height="268"/>
+                    <rect key="frame" x="0.0" y="18" width="375" height="267"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2AR-t5-I8g">
-                            <rect key="frame" x="16" y="8" width="168" height="252"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2AR-t5-I8g">
+                            <rect key="frame" x="16" y="8" width="168" height="251"/>
                             <subviews>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Mz-ot-Tz7" customClass="BasicMovieView" customModule="MovieSong" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="168" height="252"/>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Mz-ot-Tz7" customClass="BasicMovieView" customModule="MovieSong" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="168" height="251"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </subviews>
@@ -33,11 +33,11 @@
                                 <constraint firstAttribute="width" secondItem="2AR-t5-I8g" secondAttribute="height" multiplier="2:3" id="qhi-ko-0pV"/>
                             </constraints>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="haa-9q-DXf">
-                            <rect key="frame" x="192" y="8" width="167" height="252"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="haa-9q-DXf">
+                            <rect key="frame" x="192" y="8" width="168" height="251"/>
                             <subviews>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spM-22-z7K" customClass="BasicMovieView" customModule="MovieSong" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="167" height="252"/>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="spM-22-z7K" customClass="BasicMovieView" customModule="MovieSong" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="168" height="251"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </subviews>
