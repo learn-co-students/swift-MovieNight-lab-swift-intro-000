@@ -268,7 +268,9 @@ Figure out a way where you can dismiss the `MovieDetailViewController` when they
 
 Have fun with this. Expand upon it, run it on your iPhone--keep it around with you if anyone ever asks you about a specific movie. I like the idea of incorporating more detailed information on a film. Looking into the other `.swift` files in this project to see how we incorporating searching for a film or how we performed certain animations. 
 
+In case I don't see ya', good afternoon, good evening and goodnight.
 
+![](https://media.giphy.com/media/BjQTWPEVZjM6Q/giphy.gif)
 
 
 
