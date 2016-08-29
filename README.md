@@ -190,7 +190,7 @@ How our application works is as follows:
 
 We the app first loads, the user is presented with the option of searching for a film. If they type in lets say the film "Jurassic" they would be met with the following results:
 
-# TODO: Display screenshot of search for the film "Jurassic Park" here.
+![](https://s3.amazonaws.com/learn-verified/MovieSearchJurassicP.png)
 
 At this point we are creating multiple `Movie` objects--utilizing the initializer you created in the first instruction. If the `Movie` object is to be displayed on screen, we download its image at the imageURL you stored in the original initializer and display that within the cell. In this initial request (when you type in "Jurassic Park" in the movie search text field)--we're given a list of movies in the [`String` : `AnyObject`] format, which you've been able to work with so far. We asked for you to also store the IMDB id associated with the film within the initializer. Why? Because in this initial _general_ request when you type in "Juarssic" we're given a list of films, but not data specific to just _one_ film. That big json object above is data associated with one specific film.
 
