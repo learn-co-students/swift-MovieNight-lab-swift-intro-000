@@ -1,15 +1,8 @@
 # FINAL PROJECT
 
-![](https://s3.amazonaws.com/learn-verified/MovieSearchBilb.jpg)
+![](http://i.imgur.com/saf6STN.jpg?1)
 
-> All that is gold does not glitter,  
-Not all those who wander are lost;  
-The old that is strong does not wither,  
-Deep roots are not reached by the frost.  
-From the ashes a fire shall be woken,  
-A light from the shadows shall spring;  
-Renewed shall be blade that was broken,  
-The crownless again shall be king -[Bilbo Baggins](https://en.wikipedia.org/wiki/All_that_is_gold_does_not_glitter)
+> Live as if you were to die tomorrow. Learn as if you were to live forever. -[Mahatma Gandhi](https://en.wikipedia.org/wiki/Mahatma_Gandhi)
 
 ---
 
