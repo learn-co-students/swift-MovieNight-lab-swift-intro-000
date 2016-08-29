@@ -61,6 +61,38 @@ Here's how OMDb (our API we're working with) gives us back one movie. It's in th
 
 First, do the one thing I know you want to do right now. Copy and paste that URL into a browser.
 
+We know this is a dictionary of type [`String` : `String`] because when working API's they will allow you to test out their API and take a look at what the response looks like. Go to this link [here](http://www.omdbapi.com)--this is the OMDb API. 
+
+Type in Cast Way in the 'Title' box and hit search, you should be met with the following screen:
+
+![](https://s3.amazonaws.com/learn-verified/MovieSearchURL.png)
+
+_NOTE: Why is the Response in your screenshot different than the Jurassic Park example you showed us above? That's because in that example above (not the screenshot), I've added `s` as a parameter to the URL in my search which gives us back a whole slew of movie objects (condensed with only the Title, Year, imdbID, Type and Poster). In my screenshot, the Response contains a lot more information because we're not including `s` as a parameter in the URL (when communicating with OMDd), by doing that we're searching for one specific title._
+
+The "Response:" is surrounded by these curly braces
+
+```swift
+{ }
+```
+This tells us it's a dictionary. OK--then what are the key value pairs. Most (if not all) of the time, they keys are of type `String`. We know that because of these lovely little guys:
+
+```swift
+""    ""
+```
+
+This tells us anything letters or numbers surrounded by double quotes are of type `String`. 
+
+Since all of the values of this dictionary are of type `String` as well, in that they are all surrounded by double quotes, we're dealing with a response object which is a dictionary of type [`String` : `String`]. 
+
+If you see this in a response:
+
+```swift
+[  ]
+```
+Then you're working with an Array. We don't see that here which makes our life easier, we're just dealing with `String`'s as keys and `String`'s as values in this dictionary.
+
+
+
 # 1 Movie Instance Properties
 
  Create the necessary instance properties in the `Movie.swift` which will ultimately store the various `value`'s from this dictionary. You can exclude creating an instance property which will deal with the "movie" `value` from the "Type" `key`. The others we are definitely interested in. What type should our instance properties be? They should be as follows: 
