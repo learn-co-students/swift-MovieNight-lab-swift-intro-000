@@ -159,6 +159,12 @@ This does the _exact_ same thing as our `if-else` statement above. If `movieJSON
 
 Within your `init` function, do this for all of your instance properties except the `posterURLString` coming up with your own phrase for what happens if the value returns back `nil`. What do I mean, except the `posterURLString`. I want you to assign the value from the dictionary, storing it to our `posterURLString` _not_ using nil coalescing. I want this instance property to be `nil` if in fact this dictionary doesn't have a value for the key "Poster"--if the dictionary returns back `nil`, I want our `posterURLString` instance property to be `nil` then. The reason for that is how I decided to download the images at this URL later on. If this is `nil`, obviously I make no attempt to download the image, I display a default image instead. You can argue then that I should probably do that right here and now though! You might be right!
 
+#3. Create the Movie Objects
+
+Locate the `MovieManager.swift` file. Scrolling down towards the bottom of the file, you will see the implementation of the following method:
+
+search(forFilmsWithTitle title: String, handler: ([Movie]?, MovieError?) -> Void)
+
 # TODO: I didn't have them include the following in their init function yet. It's not even part of their init definition yet.
 
 ```swift
