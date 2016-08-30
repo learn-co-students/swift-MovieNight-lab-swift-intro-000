@@ -79,8 +79,18 @@ extension MovieManager {
                 
                 let actualSearch: [[String : String]] = search as! [[String : String]]
                 
-                let movies = actualSearch.map { movieJSON in Movie(searchJSON: movieJSON, movieImageDelegate: self.delegate) }
-                                
+                var movies: [Movie] = []
+                
+                // TODO: Loop through the actualSearch array, create movie objects within the for loop using the Initializer you created that can take in an argument of type [String : String]. Then append these newly made movies to the movies variable.
+                
+                for movieJSON in actualSearch {
+                    
+                    let movie = Movie(searchJSON: movieJSON)
+                    movie.movieImageDelegate = self.delegate
+                    movies.append(movie)
+                    
+                }
+                
                 handler(movies, nil)
             })
             }.resume()

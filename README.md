@@ -77,10 +77,10 @@ The "Response:" is surrounded by these curly braces
 This tells us it's a dictionary. OK--then what are the key value pairs. Most (if not all) of the time, they keys are of type `String`. We know that because of these lovely little guys:
 
 ```swift
-""    ""
+"    "
 ```
 
-This tells us anything letters or numbers surrounded by double quotes are of type `String`. 
+Any letters or numbers surrounded by double quotes are of type `String`. 
 
 Since all of the values of this dictionary are of type `String` as well, in that they are all surrounded by double quotes, we're dealing with a response object which is a dictionary of type [`String` : `String`]. 
 
@@ -93,7 +93,7 @@ Then you're working with an Array. We don't see that here which makes our life e
 
 
 
-# 1 Movie Instance Properties
+# 1. Movie Instance Properties
 
  Create the necessary instance properties in the `Movie.swift` which will ultimately store the various `value`'s from this dictionary. You can exclude creating an instance property which will deal with the "movie" `value` from the "Type" `key`. The others we are definitely interested in. What type should our instance properties be? They should be as follows: 
 * `title` of type `String`

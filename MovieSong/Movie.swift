@@ -42,12 +42,11 @@ final class Movie {
     }
     
     
-    init(searchJSON: JSONResponseDictionary, movieImageDelegate: MovieImageDelegate? = nil) {
+    init(searchJSON: JSONResponseDictionary) {
         title = searchJSON["Title"] ?? "No Title"
         year = searchJSON["Year"] ?? "No Year"
         imdbID = searchJSON["imdbID"] ?? "N/A"
         posterURLString = searchJSON["Poster"]
-        self.movieImageDelegate = movieImageDelegate
     }
     
 }
