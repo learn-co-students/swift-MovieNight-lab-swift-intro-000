@@ -22,19 +22,8 @@
 		7D8FD70F1D67BF880074E1C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FD70D1D67BF880074E1C3 /* Main.storyboard */; };
 		7D8FD7111D67BF880074E1C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FD7101D67BF880074E1C3 /* Assets.xcassets */; };
 		7D8FD7141D67BF880074E1C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D8FD7121D67BF880074E1C3 /* LaunchScreen.storyboard */; };
-		7D8FD71F1D67BF880074E1C3 /* MovieSongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FD71E1D67BF880074E1C3 /* MovieSongTests.swift */; };
 		7D8FD72D1D67DACB0074E1C3 /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8FD72C1D67DACB0074E1C3 /* MovieManager.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		7D8FD71B1D67BF880074E1C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7D8FD6FE1D67BF880074E1C3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7D8FD7051D67BF880074E1C3;
-			remoteInfo = MovieSong;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7D37529E1D69F81E004D5999 /* MovieImageState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieImageState.swift; sourceTree = "<group>"; };
@@ -54,21 +43,11 @@
 		7D8FD7101D67BF880074E1C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D8FD7131D67BF880074E1C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D8FD7151D67BF880074E1C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D8FD71A1D67BF880074E1C3 /* MovieSongTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieSongTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7D8FD71E1D67BF880074E1C3 /* MovieSongTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSongTests.swift; sourceTree = "<group>"; };
-		7D8FD7201D67BF880074E1C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D8FD72C1D67DACB0074E1C3 /* MovieManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7D8FD7031D67BF880074E1C3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7D8FD7171D67BF880074E1C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -116,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				7D8FD7081D67BF880074E1C3 /* MovieSong */,
-				7D8FD71D1D67BF880074E1C3 /* MovieSongTests */,
 				7D8FD7071D67BF880074E1C3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				7D8FD7061D67BF880074E1C3 /* MovieSong.app */,
-				7D8FD71A1D67BF880074E1C3 /* MovieSongTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,15 +116,6 @@
 				7D8FD72B1D67BFC80074E1C3 /* Supporting Files */,
 			);
 			path = MovieSong;
-			sourceTree = "<group>";
-		};
-		7D8FD71D1D67BF880074E1C3 /* MovieSongTests */ = {
-			isa = PBXGroup;
-			children = (
-				7D8FD71E1D67BF880074E1C3 /* MovieSongTests.swift */,
-				7D8FD7201D67BF880074E1C3 /* Info.plist */,
-			);
-			path = MovieSongTests;
 			sourceTree = "<group>";
 		};
 		7D8FD72B1D67BFC80074E1C3 /* Supporting Files */ = {
@@ -181,24 +149,6 @@
 			productReference = 7D8FD7061D67BF880074E1C3 /* MovieSong.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7D8FD7191D67BF880074E1C3 /* MovieSongTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7D8FD7261D67BF880074E1C3 /* Build configuration list for PBXNativeTarget "MovieSongTests" */;
-			buildPhases = (
-				7D8FD7161D67BF880074E1C3 /* Sources */,
-				7D8FD7171D67BF880074E1C3 /* Frameworks */,
-				7D8FD7181D67BF880074E1C3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7D8FD71C1D67BF880074E1C3 /* PBXTargetDependency */,
-			);
-			name = MovieSongTests;
-			productName = MovieSongTests;
-			productReference = 7D8FD71A1D67BF880074E1C3 /* MovieSongTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -211,10 +161,6 @@
 				TargetAttributes = {
 					7D8FD7051D67BF880074E1C3 = {
 						CreatedOnToolsVersion = 7.3.1;
-					};
-					7D8FD7191D67BF880074E1C3 = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 7D8FD7051D67BF880074E1C3;
 					};
 				};
 			};
@@ -232,7 +178,6 @@
 			projectRoot = "";
 			targets = (
 				7D8FD7051D67BF880074E1C3 /* MovieSong */,
-				7D8FD7191D67BF880074E1C3 /* MovieSongTests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,13 +192,6 @@
 				7D8FD7111D67BF880074E1C3 /* Assets.xcassets in Resources */,
 				7D8FD70F1D67BF880074E1C3 /* Main.storyboard in Resources */,
 				7D48C6551D68A329001B0C55 /* BasicMovieView.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7D8FD7181D67BF880074E1C3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,23 +216,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7D8FD7161D67BF880074E1C3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7D8FD71F1D67BF880074E1C3 /* MovieSongTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7D8FD71C1D67BF880074E1C3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7D8FD7051D67BF880074E1C3 /* MovieSong */;
-			targetProxy = 7D8FD71B1D67BF880074E1C3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7D8FD70D1D67BF880074E1C3 /* Main.storyboard */ = {
@@ -421,30 +343,6 @@
 			};
 			name = Release;
 		};
-		7D8FD7271D67BF880074E1C3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MovieSongTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Gamesmith.Swift.MovieSongTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieSong.app/MovieSong";
-			};
-			name = Debug;
-		};
-		7D8FD7281D67BF880074E1C3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MovieSongTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Gamesmith.Swift.MovieSongTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieSong.app/MovieSong";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -462,15 +360,6 @@
 			buildConfigurations = (
 				7D8FD7241D67BF880074E1C3 /* Debug */,
 				7D8FD7251D67BF880074E1C3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7D8FD7261D67BF880074E1C3 /* Build configuration list for PBXNativeTarget "MovieSongTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7D8FD7271D67BF880074E1C3 /* Debug */,
-				7D8FD7281D67BF880074E1C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
