@@ -161,6 +161,7 @@
 				TargetAttributes = {
 					7D8FD7051D67BF880074E1C3 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = XLTX8XH2N8;
 					};
 				};
 			};
@@ -327,6 +328,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XLTX8XH2N8;
 				INFOPLIST_FILE = MovieSong/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gamesmith.Swift.MovieSong;
@@ -338,6 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XLTX8XH2N8;
 				INFOPLIST_FILE = MovieSong/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Gamesmith.Swift.MovieSong;
