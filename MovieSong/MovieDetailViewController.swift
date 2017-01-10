@@ -11,7 +11,7 @@ import UIKit
 class MovieDetailViewController: UIViewController {
     
     var movie: Movie!
-    
+
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var movieDirectorLabel: UILabel!
     @IBOutlet weak var movieReleasedLabel: UILabel!
@@ -19,7 +19,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieScoreLabel: UILabel!
     @IBOutlet weak var moviePlotTextView: UITextView!
     @IBOutlet weak var moviePosterImageView: UIImageView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideAllViews()
