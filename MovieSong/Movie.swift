@@ -24,6 +24,13 @@ final class Movie {
     var posterURLString: String?
 
     // TODO: Instruction #4, create more instance properties
+    var hasFullInfo = false
+    var rated = "No Rating"
+    var released = "No Release Date"
+    var director = "No Director"
+    var imdbRating = "N/A"
+    var tomatoMeter = "N'A"
+    var plot = "No Plot"
     
     var attemptedToDownloadImage = false
     var movieImageDelegate: MovieImageDelegate?
@@ -46,7 +53,14 @@ final class Movie {
 
     
     // TODO: Instruction #4, create the updateFilmInfo(_:) method
-    
+    func updateFilmInfo(_ jsonResponse: [String: String]) {
+        rated = jsonResponse["Rated"] ?? "No Rating"
+        released = jsonResponse["Released"] ?? "No Release Date"
+        director = jsonResponse["Director"] ?? "No Director"
+        imdbRating = jsonResponse["imdbRating"] ?? "N/A"
+        tomatoMeter = jsonResponse["tomatoMeter"] ?? "N/A"
+        plot = jsonResponse["Plot"] ?? "No Plot"
+    }
 }
 
 
