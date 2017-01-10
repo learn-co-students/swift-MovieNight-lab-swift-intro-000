@@ -18,6 +18,10 @@ protocol MovieImageDelegate {
 final class Movie {
     
     // TODO: Instruction #1, create instance properties
+    let title: String
+    let year: String
+    let imdbID: String
+    var posterURLString: String?
 
     // TODO: Instruction #4, create more instance properties
     
@@ -33,6 +37,12 @@ final class Movie {
     
     
     // TODO: Instruction #2, create Initializer 
+    init(movieJSON: [String: String]) {
+        title = movieJSON["Title"] ?? "No Title"
+        year = movieJSON["Year"] ?? "No Year"
+        imdbID = movieJSON["imdbID"] ?? "No IMDBID"
+        posterURLString = movieJSON["Poster"]
+    }
 
     
     // TODO: Instruction #4, create the updateFilmInfo(_:) method
