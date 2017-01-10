@@ -202,6 +202,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="fUW-ke-j9L" id="yFv-jx-ESg"/>
                         <outlet property="movieDirectorLabel" destination="lf4-mn-dkb" id="unr-7k-8Ss"/>
                         <outlet property="moviePlotTextView" destination="2sk-Fe-zfu" id="7Uh-mO-EY2"/>
                         <outlet property="moviePosterImageView" destination="dcj-ZY-FS7" id="NmC-Xu-Oor"/>

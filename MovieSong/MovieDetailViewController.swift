@@ -19,11 +19,14 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieScoreLabel: UILabel!
     @IBOutlet weak var moviePlotTextView: UITextView!
     @IBOutlet weak var moviePosterImageView: UIImageView!
+    @IBOutlet weak var contentView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideAllViews()
         handleLayoutOnLoad()
+        contentView.layer.cornerRadius = 15.0
+        contentView.clipsToBounds = true
     }
     
     override func viewWillAppear(animated: Bool) {
