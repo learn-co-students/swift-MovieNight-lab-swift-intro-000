@@ -31,6 +31,7 @@ class MovieDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        setupGestureView()
     }
     
 }
@@ -106,5 +107,17 @@ extension MovieDetailViewController {
 extension MovieDetailViewController {
     
     // TODO: Instruction #6, E.T. Go Home
+    func setupGestureView() {
+        let gestureView = UIView(frame: view.bounds)
+        gestureView.userInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissView))
+        gestureRecognizer.numberOfTapsRequired = 1
+        gestureView.addGestureRecognizer(gestureRecognizer)
+        view.insertSubview(gestureView, atIndex: 0)
+    }
+
+    func dismissView() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
