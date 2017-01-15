@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieView" customModule="MovieSong" customModuleProvider="target">
@@ -19,26 +23,26 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4vl-R0-lBZ">
-                    <rect key="frame" x="0.0" y="18" width="375" height="267"/>
+                    <rect key="frame" x="0.0" y="18" width="375" height="266"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2AR-t5-I8g">
-                            <rect key="frame" x="16" y="8" width="168" height="251"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2AR-t5-I8g">
+                            <rect key="frame" x="16" y="8" width="167.5" height="250"/>
                             <subviews>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Mz-ot-Tz7" customClass="BasicMovieView" customModule="MovieSong" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="168" height="251"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Mz-ot-Tz7" customClass="BasicMovieView" customModule="MovieSong" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="167.5" height="250"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="2AR-t5-I8g" secondAttribute="height" multiplier="2:3" id="qhi-ko-0pV"/>
                             </constraints>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="haa-9q-DXf">
-                            <rect key="frame" x="192" y="8" width="168" height="251"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="haa-9q-DXf">
+                            <rect key="frame" x="191.5" y="8" width="167.5" height="250"/>
                             <subviews>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="spM-22-z7K" customClass="BasicMovieView" customModule="MovieSong" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="168" height="251"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spM-22-z7K" customClass="BasicMovieView" customModule="MovieSong" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="167.5" height="250"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                             </subviews>
                             <constraints>
@@ -49,7 +53,7 @@
                     <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="4vl-R0-lBZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="BJ0-QQ-5No"/>
                 <constraint firstItem="4vl-R0-lBZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EC3-Xb-1Yh"/>
