@@ -18,8 +18,22 @@ protocol MovieImageDelegate {
 final class Movie {
     
     // TODO: Instruction #1, create instance properties
+    
+    var title:String
+    var year: String
+    var imdbID: String
+    var posterURLString: String?
+    
 
     // TODO: Instruction #4, create more instance properties
+    
+    var hasFullInfo: Bool = false
+    var rated: String = "No Rating"
+    var released: String = "No Release Date"
+    var director: String = "No Director"
+    var imdbRating: String = "N/A"
+    var tomatoMeter: String = "N/A"
+    var plot: String = "No Plot"
     
     var attemptedToDownloadImage = false
     var movieImageDelegate: MovieImageDelegate?
@@ -33,9 +47,32 @@ final class Movie {
     
     
     // TODO: Instruction #2, create Initializer 
+    
+    init(movieDict: [String: String]) {
+        
+        self.title = movieDict["Title"] ?? "No movie title"
+        self.year = movieDict["Year"] ?? "No Year"
+        self.imdbID = movieDict["imdbID"] ?? "No imdbID"
+        
+        if let posterURLString = movieDict["Poster"] {
+            
+            self.posterURLString = posterURLString
+        }
+    }
 
     
     // TODO: Instruction #4, create the updateFilmInfo(_:) method
+    
+    func updateFilmInfo(jsonResponse: [String: String]) {
+        
+        self.rated = jsonResponse["Rated"] ?? "No Rating"
+        self.released = jsonResponse["Released"] ?? "No release date"
+        self.director = jsonResponse["Director"] ?? "No Director"
+        self.imdbRating = jsonResponse["imdbRating"] ?? "No rating"
+        self.tomatoMeter = jsonResponse["tomatoRating"] ?? "No tomato rating"
+        self.plot = jsonResponse["Plot"] ?? "No Plot"
+        
+    }
     
 }
 
@@ -129,8 +166,13 @@ extension Movie {
                 if error != nil { handler(false) }
                 if data == nil { handler(false) }
                 
+                print(response)
+                print("Made it here")
+                
                 guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
                     else { handler(false); return }
+                
+                print(jsonResponse)
                             
                 self.updateFilmInfo(jsonResponse)
             

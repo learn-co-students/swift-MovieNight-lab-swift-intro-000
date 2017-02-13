@@ -45,10 +45,13 @@ extension MovieManager {
         guard let searchURL = NSURL(string: "http://www.omdbapi.com/?s=\(urlString)&y=&plot=full&r=json")
             else { throw MovieError.BadSearchURL("Unable to create URL with the search term: \(title)") }
         
+        
         defaultSession.dataTaskWithURL(searchURL) { [unowned self] data, response, error in
             dispatch_async(dispatch_get_main_queue(),{
+                
                 if error != nil { handler(nil, MovieError.NoData(error!.localizedDescription)) }
                 if data == nil { handler(nil, MovieError.NoData("Data has come back nil.")) }
+                
                 
                 guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! [String: AnyObject], let search = jsonResponse["Search"]
                     else { handler(nil, MovieError.BadJSONconversion("Unable to convert data to JSON")); return }
@@ -60,6 +63,12 @@ extension MovieManager {
                 
                 // TODO: Insctruction #3, Loop through the actualSearch array, create movie objects within the for loop using the Initializer you created that can take in an argument of type [String : String]. Then append these newly made movies to the movies variable.
                 
+                for movie in actualSearch {
+                    
+                    let newMovie = Movie(movieDict: movie)
+                    movies.append(newMovie)
+                    
+                }
                 
                 for movie in movies {
                     movie.movieImageDelegate = self.delegate
