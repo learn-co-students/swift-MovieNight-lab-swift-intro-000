@@ -11,13 +11,13 @@ import UIKit
 
 enum MovieImageState {
     
-    case Loading(UIImage)
-    case Downloaded(UIImage)
+    case loading(UIImage)
+    case downloaded(UIImage)
     case NoImage(UIImage)
-    case Nothing
+    case nothing
     
     init() {
-        self = .Nothing
+        self = .nothing
     }
     
     mutating func noImage() {
@@ -25,11 +25,11 @@ enum MovieImageState {
     }
     
     mutating func loadingImage() {
-        self = .Loading(UIImage(imageLiteral: "LoadingPoster"))
+        self = .loading(UIImage(imageLiteral: "LoadingPoster"))
     }
     
     mutating func nothingImage() {
-        self = .Nothing
+        self = .nothing
     }
     
 }

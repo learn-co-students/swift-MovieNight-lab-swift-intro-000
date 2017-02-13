@@ -32,11 +32,34 @@ final class MovieManager {
 
 
 // MARK: Search Methods
-
 typealias JSONResponseDictionary = [String : String]
 typealias JSONSearchDictionary = [String : [[String : String]]]
 
 extension MovieManager {
+    
+    func search(forFilmWithID film: String, withHandler handler: (Movie?, MovieError?) -> Void) throws {
+        guard let urlString = film.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            else { throw MovieError.BadSearchString("Unable to encode \(film) to use within our search.") }
+        
+        guard let searchURL = NSURL(string: "http://www.omdbapi.com/?i=\(urlString)&plot=full&r=json")
+            else { throw MovieError.BadSearchURL("Unable to create URL with the search term: \(film)") }
+        
+        defaultSession.dataTaskWithURL(searchURL) { [unowned self] data, response, error in
+            dispatch_async(dispatch_get_main_queue(),{
+                if error != nil { handler(nil, MovieError.NoData(error!.localizedDescription)) }
+                if data == nil { handler(nil, MovieError.NoData("Data has come back nil.")) }
+                
+                guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
+                    else { handler(nil, MovieError.BadJSONconversion("Unable to convert data to JSON")); return }
+                
+                let movie = Movie(searchJSON: jsonResponse)
+                
+                movie.movieImageDelegate = self.delegate
+                
+                handler(movie, nil)
+            })
+            }.resume()
+    }
     
     func search(forFilmsWithTitle title: String, handler: ([Movie]?, MovieError?) -> Void) throws {
         guard let urlString = title.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
@@ -55,15 +78,7 @@ extension MovieManager {
                 
                 let actualSearch: [[String : String]] = search as! [[String : String]]
                 
-                var movies: [Movie] = []
-            
-                
-                // TODO: Insctruction #3, Loop through the actualSearch array, create movie objects within the for loop using the Initializer you created that can take in an argument of type [String : String]. Then append these newly made movies to the movies variable.
-                
-                
-                for movie in movies {
-                    movie.movieImageDelegate = self.delegate
-                }
+                let movies = actualSearch.map { movieJSON in Movie(searchJSON: movieJSON, movieImageDelegate: self.delegate) }
                 
                 handler(movies, nil)
             })
