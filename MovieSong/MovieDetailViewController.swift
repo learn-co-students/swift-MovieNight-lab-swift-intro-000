@@ -9,9 +9,15 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var movieRatingLabel: UILabel!
+    @IBOutlet weak var IMDBRating: UILabel!
+    @IBOutlet weak var movieImage: UIImageView!
+    @IBOutlet weak var movieTextField: UITextView!
+    @IBOutlet weak var directorLabel: UILabel!
     
     var movie: Movie!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideAllViews()
