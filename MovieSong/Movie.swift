@@ -18,8 +18,21 @@ protocol MovieImageDelegate {
 final class Movie {
     
     // TODO: Instruction #1, create instance properties
+    
+    var title: String
+    var year: String
+    var imdbID: String
+    var posterURLString: String?
 
     // TODO: Instruction #4, create more instance properties
+    
+    var hasFullInfo = false
+    var rated: String = "No Rating"
+    var released: String = "No Release Date"
+    var director = "No Director"
+    var imbdRating = "N/A"
+    var tomatoMeter = "N/A"
+    var plot = "No Plot"
     
     var attemptedToDownloadImage = false
     var movieImageDelegate: MovieImageDelegate?
@@ -34,8 +47,23 @@ final class Movie {
     
     // TODO: Instruction #2, create Initializer 
 
+    init(movieJSON: [String : String]) {
+        title = movieJSON["Title"] ?? "No Title"
+        year = movieJSON["Year"] ?? "No Year"
+        imdbID = movieJSON["imbdID"] ?? "No imdbID"
+        posterURLString = movieJSON["posterURLString"]
+    }
     
     // TODO: Instruction #4, create the updateFilmInfo(_:) method
+    
+    func updateFilmInfo(jsonResponse: [String : String]) {
+        let rated = jsonResponse["Rated"] ?? "No Rating"
+        let released = jsonResponse["Released"] ?? "No Release Date"
+        let director = jsonResponse["Director"] ?? "No Director"
+        let imbdRating = jsonResponse["imbdRating"] ?? "N/A"
+        let tomatoMeter = jsonResponse["tomatoMeter"] ?? "N/A"
+        let plot = jsonResponse["Plot"] ?? "No Plot"
+    }
     
 }
 
