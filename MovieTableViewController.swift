@@ -28,13 +28,13 @@ class MovieTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
-        tableView.backgroundColor = UIColor.clearColor()
-        tableView.separatorStyle = .None
+        tableView.backgroundColor = UIColor.clear
+        tableView.separatorStyle = .none
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        performSegueWithIdentifier("SearchSegue", sender: nil)
+        performSegue(withIdentifier: "SearchSegue", sender: nil)
     }
     
 }
@@ -44,7 +44,7 @@ class MovieTableViewController: UITableViewController {
 extension MovieTableViewController: MovieSelected {
     
     func movieSelected(movie: Movie) {
-        performSegueWithIdentifier("MovieDetail", sender: movie)
+        performSegue(withIdentifier: "MovieDetail", sender: movie)
     }
     
 }
@@ -54,7 +54,7 @@ extension MovieTableViewController: MovieSelected {
 
 extension MovieTableViewController {
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 320
     }
     
@@ -65,17 +65,17 @@ extension MovieTableViewController {
 
 extension MovieTableViewController {
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count % 2 == 0 ? movies.count / 2 : (movies.count / 2) + 1
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieTableViewCell
         
         if cell.movieSelectedDelegate == nil { cell.movieSelectedDelegate = self }
         
@@ -107,14 +107,14 @@ extension MovieTableViewController {
 
 extension MovieTableViewController {
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         switch identifier {
         case "SearchSegue":
-            let destVC = segue.destinationViewController as! SearchViewController
+            let destVC = segue.destination as! SearchViewController
             destVC.searchDelegate = self
         case "MovieDetail":
-            let destVC = segue.destinationViewController as! MovieDetailViewController
+            let destVC = segue.destination as! MovieDetailViewController
             let chosenMovie = sender as! Movie
             destVC.movie = chosenMovie
         default:
