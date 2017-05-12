@@ -10,6 +10,8 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
     
+    
+    
     var movie: Movie!
     
     override func viewDidLoad() {
@@ -18,7 +20,7 @@ class MovieDetailViewController: UIViewController {
         handleLayoutOnLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -36,7 +38,7 @@ extension MovieDetailViewController {
     }
     
     func unHideAllViews() {
-        UIView.animateWithDuration(0.6, animations: {
+        UIView.animate(withDuration: 0.6, animations: {
             
             // TODO: Instruction #5, Set the .alpha property of all the views (outlets you created) here to 1.0
             
