@@ -9,11 +9,11 @@
 import UIKit
 
 protocol CanDisplayImageDelegate {
-    func canDisplayImage(view: BasicMovieView) -> Bool
+    func canDisplayImage(_ view: BasicMovieView) -> Bool
 }
 
 protocol MovieSelected {
-    func movieSelected(movie: Movie)
+    func movieSelected(_ movie: Movie)
 }
 
 final class BasicMovieView: UIView {
@@ -46,13 +46,13 @@ final class BasicMovieView: UIView {
     }
     
     func commonInit() {
-        NSBundle.mainBundle().loadNibNamed("BasicMovieView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("BasicMovieView", owner: self, options: nil)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
-        contentView.leftAnchor.constraintEqualToAnchor(self.leftAnchor).active = true
-        contentView.rightAnchor.constraintEqualToAnchor(self.rightAnchor).active = true
-        contentView.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor).active = true
-        contentView.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
+        contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         queue = Queue(imageView: moviePosterImageView)
         setupGestureRecognizer()
     }
@@ -66,7 +66,7 @@ extension BasicMovieView {
     func setupGestureRecognizer() {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
         gestureRecognizer.numberOfTapsRequired = 1
-        moviePosterImageView.userInteractionEnabled = true
+        moviePosterImageView.isUserInteractionEnabled = true
         moviePosterImageView.addGestureRecognizer(gestureRecognizer)
     }
     
@@ -85,7 +85,7 @@ extension BasicMovieView {
         moviePosterImageView.layer.removeAllAnimations()
         contentView.layer.removeAllAnimations()
         movieTitleLabel.text = " "
-        moviePosterImageView.image = UIImage(imageLiteral: "Nothing")
+        moviePosterImageView.image = UIImage(imageLiteralResourceName: "Nothing")
     }
     
 }
@@ -97,11 +97,11 @@ extension BasicMovieView: MovieImageDelegate {
     func imageUpdate(withMovie movie: Movie) {
         // TODO: Remove this comment. Look to see if indexPath is still on screen. Maybe? It's working without it probably because of some saftey check I'm doing elsewhere.
         switch movie.imageState {
-        case .Loading:
+        case .loading:
             
             let images = (1...8).map { index -> UIImage in
                 let imageName = "Loading" + String(index)
-                let image = UIImage(imageLiteral: imageName)
+                let image = UIImage(imageLiteralResourceName: imageName)
                 return image
             }
         
@@ -111,15 +111,15 @@ extension BasicMovieView: MovieImageDelegate {
             
         case .NoImage(let image):
             queue.addOperation(self.moviePosterImageView.image = image, duration: 0.6)
-        case .Downloaded(let image):
+        case .downloaded(let image):
             // TODO: No longer is there this list of random animations, you should clean this up.
-            let animations: [UIViewAnimationOptions] = [.TransitionCurlDown]
+            let animations: [UIViewAnimationOptions] = [.transitionCurlDown]
             let randomIndex = Int(arc4random_uniform(UInt32(animations.count)))
             let randomAnimation = animations[randomIndex]
             queue.addOperation(self.moviePosterImageView.image = image, animation: randomAnimation, duration: 0.8)
-        case .Nothing:
-            let image = UIImage(imageLiteral: "Nothing")
-            queue.addOperation(self.moviePosterImageView.image = image, animation: .TransitionCrossDissolve, duration: 0.1)
+        case .nothing:
+            let image = UIImage(imageLiteralResourceName: "Nothing")
+            queue.addOperation((self.moviePosterImageView.image = image), animation: .transitionCrossDissolve, duration: 0.1)
         }
     }
     
