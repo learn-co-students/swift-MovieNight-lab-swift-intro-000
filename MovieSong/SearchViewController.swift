@@ -23,7 +23,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 10.0
         mainView.layer.masksToBounds = true
-        searchTextField.returnKeyType = .Search
+        searchTextField.returnKeyType = .search
         searchTextField.delegate = self
         searchTextField.becomeFirstResponder()
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissView))
@@ -33,7 +33,7 @@ class SearchViewController: UIViewController {
     
     func dismissView() {
         searchTextField.resignFirstResponder()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func search() {
@@ -41,7 +41,7 @@ class SearchViewController: UIViewController {
         dismissView()
     }
     
-    @IBAction func cancelTapped(sender: UIButton) {
+    @IBAction func cancelTapped(_ sender: UIButton) {
         dismissView()
     }
     
@@ -51,7 +51,7 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         search()
         return false
     }
