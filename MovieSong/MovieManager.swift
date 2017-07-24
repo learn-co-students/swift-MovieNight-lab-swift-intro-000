@@ -10,19 +10,19 @@ import Foundation
 import UIKit
 
 
-enum MovieError: ErrorType {
+enum MovieError: Error {
     
-    case BadSearchString(String)
-    case BadSearchURL(String)
-    case NoData(String)
-    case BadJSONconversion(String)
+    case badSearchString(String)
+    case badSearchURL(String)
+    case noData(String)
+    case badJSONconversion(String)
     
 }
 
 final class MovieManager {
     
     var delegate: MovieImageDelegate?
-    let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     
     init(delegate: MovieImageDelegate? = nil) {
         self.delegate = delegate
@@ -38,25 +38,29 @@ typealias JSONSearchDictionary = [String : [[String : String]]]
 
 extension MovieManager {
     
-    func search(forFilmsWithTitle title: String, handler: ([Movie]?, MovieError?) -> Void) throws {
-        guard let urlString = title.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            else { throw MovieError.BadSearchString("Unable to encode \(title) to use within our search.") }
+    func search(forFilmsWithTitle title: String, handler: @escaping ([Movie]?, MovieError?) -> Void) throws {
+        guard let urlString = title.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+            else { throw MovieError.badSearchString("Unable to encode \(title) to use within our search.") }
         
-        guard let searchURL = NSURL(string: "http://www.omdbapi.com/?s=\(urlString)&y=&plot=full&r=json")
-            else { throw MovieError.BadSearchURL("Unable to create URL with the search term: \(title)") }
+        guard let searchURL = URL(string: "http://www.omdbapi.com/?s=\(urlString)&y=&plot=full&r=json")
+            else { throw MovieError.badSearchURL("Unable to create URL with the search term: \(title)") }
         
-        defaultSession.dataTaskWithURL(searchURL) { [unowned self] data, response, error in
-            dispatch_async(dispatch_get_main_queue(),{
-                if error != nil { handler(nil, MovieError.NoData(error!.localizedDescription)) }
-                if data == nil { handler(nil, MovieError.NoData("Data has come back nil.")) }
+        defaultSession.dataTask(with: searchURL, completionHandler: { [unowned self] data, response, error in
+            DispatchQueue.main.async(execute: {
+                if error != nil { handler(nil, MovieError.noData(error!.localizedDescription)) }
+                if data == nil { handler(nil, MovieError.noData("Data has come back nil.")) }
                 
-                guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! [String: AnyObject], let search = jsonResponse["Search"]
-                    else { handler(nil, MovieError.BadJSONconversion("Unable to convert data to JSON")); return }
+                guard let jsonResponse = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject], let search = jsonResponse["Search"]
+                    else { handler(nil, MovieError.badJSONconversion("Unable to convert data to JSON")); return }
                 
                 let actualSearch: [[String : String]] = search as! [[String : String]]
                 
                 var movies: [Movie] = []
             
+                for searchResults in actualSearch {
+                    movies.append(Movie(movieJSON: searchResults))
+                    
+                }
                 
                 // TODO: Insctruction #3, Loop through the actualSearch array, create movie objects within the for loop using the Initializer you created that can take in an argument of type [String : String]. Then append these newly made movies to the movies variable.
                 
@@ -67,7 +71,7 @@ extension MovieManager {
                 
                 handler(movies, nil)
             })
-            }.resume()
+            }) .resume()
         
     }
     
