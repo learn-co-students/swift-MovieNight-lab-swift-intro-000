@@ -69,7 +69,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchButton" destination="taq-jc-iXc" id="n4Q-lc-nEn"/>
-                        <segue destination="tJE-0c-t2u" kind="presentation" identifier="MovieDetail" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="rPE-tr-I5I"/>
+                        <segue destination="tJE-0c-t2u" kind="show" identifier="MovieDetail" id="rPE-tr-I5I"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ofl-BR-BEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,11 +151,17 @@
                         <viewControllerLayoutGuide type="bottom" id="mgt-Xf-q03"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dEN-O8-Amb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOZ-gS-aiW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Adt-8r-W6W">
-                                <rect key="frame" x="16" y="25" width="343" height="60"/>
+                                <rect key="frame" x="16" y="5" width="343" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="GKN-1M-xuE"/>
@@ -167,13 +173,13 @@
                                 <size key="shadowOffset" width="2" height="3"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wxy-Bv-RkA">
-                                <rect key="frame" x="16" y="96" width="131" height="195"/>
+                                <rect key="frame" x="16" y="76" width="131" height="195"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="131" id="Eic-ey-VSv"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ReleaseDate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-B0-c2f">
-                                <rect key="frame" x="155" y="145" width="204" height="41"/>
+                                <rect key="frame" x="155" y="125" width="204" height="41"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="Cbt-ls-nvW"/>
@@ -185,7 +191,7 @@
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qet-Qc-IN2">
-                                <rect key="frame" x="155" y="194" width="204" height="41"/>
+                                <rect key="frame" x="155" y="174" width="204" height="41"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="SDx-dT-Zdi"/>
@@ -197,7 +203,7 @@
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tomatoMeter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bb2-Ee-w8i">
-                                <rect key="frame" x="155" y="243" width="204" height="48"/>
+                                <rect key="frame" x="155" y="223" width="204" height="48"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="h2p-qm-Ydk"/>
@@ -210,13 +216,13 @@
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Plot" translatesAutoresizingMaskIntoConstraints="NO" id="fHf-OR-jwN">
-                                <rect key="frame" x="16" y="299" width="343" height="331"/>
+                                <rect key="frame" x="16" y="279" width="343" height="287"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Director" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POX-Qf-atl">
-                                <rect key="frame" x="155" y="96" width="204" height="41"/>
+                                <rect key="frame" x="155" y="76" width="204" height="41"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="Wre-HW-ANa"/>

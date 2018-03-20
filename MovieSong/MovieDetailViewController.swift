@@ -31,6 +31,7 @@ class MovieDetailViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
+    
 }
 
 

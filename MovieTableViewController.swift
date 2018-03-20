@@ -37,6 +37,7 @@ class MovieTableViewController: UITableViewController {
         performSegue(withIdentifier: "SearchSegue", sender: nil)
     }
     
+    
 }
 
 // MARK: Movie Selected
@@ -84,6 +85,10 @@ extension MovieTableViewController {
             let firstFilm = movies[(indexPath as NSIndexPath).row]
             cell.movieView.leftBasicMovieView.movie = firstFilm
             if (indexPath as NSIndexPath).row + 1 <= movies.count {
+                if movies.count == 1 {
+                    cell.movieView.leftBasicMovieView.movie = firstFilm
+                    return cell
+                }
                 let secondFilm = movies[(indexPath as NSIndexPath).row + 1]
                 cell.movieView.rightBasicMovieView.movie = secondFilm
             }
