@@ -10,6 +10,14 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var directorLabel: UILabel!
+    @IBOutlet weak var releaseLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var imdbAndRottenLabel: UILabel!
+    @IBOutlet weak var plotLabel: UILabel!
+    
     var movie: Movie!
     
     override func viewDidLoad() {
@@ -18,7 +26,7 @@ class MovieDetailViewController: UIViewController {
         handleLayoutOnLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -36,7 +44,7 @@ extension MovieDetailViewController {
     }
     
     func unHideAllViews() {
-        UIView.animateWithDuration(0.6, animations: {
+        UIView.animate(withDuration: 0.6, animations: {
             
             // TODO: Instruction #5, Set the .alpha property of all the views (outlets you created) here to 1.0
             
@@ -46,7 +54,16 @@ extension MovieDetailViewController {
     func setupAllTheViews() {
         
         // TODO: Instruction #5, Implement the setupAllTheViews() function.
-       
+        print("Imported movie array = \(movie)")
+        
+        titleLabel.text = movie.title
+        directorLabel.text = movie.director
+        releaseLabel.text = movie.released
+        ratingLabel.text = movie.rated
+        posterImage.image = movie.image
+        imdbAndRottenLabel.text = "\(movie.imdbRating) / \(movie.tomatoMeter)"
+        plotLabel.text = movie.plot
+        
         
         unHideAllViews()
     }
