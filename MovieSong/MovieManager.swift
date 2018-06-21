@@ -57,9 +57,13 @@ extension MovieManager {
                 
                 var movies: [Movie] = []
             
-                
-                // TODO: Insctruction #3, Loop through the actualSearch array, create movie objects within the for loop using the Initializer you created that can take in an argument of type [String : String]. Then append these newly made movies to the movies variable.
-                
+                for movie in actualSearch {
+                    //create movie object
+                    let movieObject = Movie(movieJSON: movie)
+                    movies.append(movieObject)
+                    
+                }
+                                
                 
                 for movie in movies {
                     movie.movieImageDelegate = self.delegate
