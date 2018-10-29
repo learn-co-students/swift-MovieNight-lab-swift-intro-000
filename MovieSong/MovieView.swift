@@ -25,13 +25,13 @@ class MovieView: UIView {
     }
     
     func commonInit() {
-        NSBundle.mainBundle().loadNibNamed("MovieView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("MovieView", owner: self, options: nil)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
-        contentView.leftAnchor.constraintEqualToAnchor(self.leftAnchor).active = true
-        contentView.rightAnchor.constraintEqualToAnchor(self.rightAnchor).active = true
-        contentView.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor).active = true
-        contentView.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
+        contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
     }
     
     func clearContentsForReUse() {

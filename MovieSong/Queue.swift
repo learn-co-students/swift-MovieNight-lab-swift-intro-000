@@ -20,7 +20,7 @@ final class Queue {
     
     init(imageView: UIImageView) { self.imageView = imageView }
     
-    func addOperation(@autoclosure(escaping) op: Operation, animation: UIViewAnimationOptions = .TransitionCrossDissolve, duration: Double = 0.1 ) {
+    func addOperation( _ op: @escaping @autoclosure () -> Void, animation: UIViewAnimationOptions = .transitionCrossDissolve, duration: Double = 0.1 ) {
         operations.append((op, animation, duration))
         if !performingOperations { performNextOperation() }
     }
@@ -31,7 +31,7 @@ final class Queue {
         performingOperations = true
         let (operation, animation, duration) = operations.first!
         
-        UIView.transitionWithView(imageView, duration: duration, options: [animation, .AllowUserInteraction], animations: operation) { _ in
+        UIView.transition(with: imageView, duration: duration, options: [animation, .allowUserInteraction], animations: operation) { _ in
             if !self.operations.isEmpty {
             _ = self.operations.removeFirst()
             self.performingOperations = false

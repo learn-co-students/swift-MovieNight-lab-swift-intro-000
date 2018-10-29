@@ -21,11 +21,11 @@ enum MovieImageState {
     }
     
     mutating func noImage() {
-        self = .NoImage(UIImage(imageLiteral: "MoviePoster"))
+        self = .NoImage(UIImage(imageLiteralResourceName: "MoviePoster"))
     }
     
     mutating func loadingImage() {
-        self = .Loading(UIImage(imageLiteral: "LoadingPoster"))
+        self = .Loading(UIImage(imageLiteralResourceName: "LoadingPoster"))
     }
     
     mutating func nothingImage() {
