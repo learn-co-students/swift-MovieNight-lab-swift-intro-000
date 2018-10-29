@@ -53,6 +53,8 @@ extension MovieManager {
                 guard let jsonResponse = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject], let search = jsonResponse["Search"]
                     else { handler(nil, MovieError.BadJSONconversion("Unable to convert data to JSON")); return }
                 
+                print(jsonResponse)
+                
                 let actualSearch: [[String : String]] = search as! [[String : String]]
                 
                 var movies: [Movie] = []
@@ -60,6 +62,9 @@ extension MovieManager {
                 
                 // TODO: Insctruction #3, Loop through the actualSearch array, create movie objects within the for loop using the Initializer you created that can take in an argument of type [String : String]. Then append these newly made movies to the movies variable.
                 
+                for result in actualSearch {
+                    movies.append(Movie(movieJSON: result))
+                }
                 
                 for movie in movies {
                     movie.movieImageDelegate = self.delegate

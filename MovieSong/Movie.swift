@@ -26,7 +26,12 @@ final class Movie {
     // TODO: Instruction #4, create more instance properties
     
     var hasFullInfo: Bool = false
-
+    var rated: String = "No rating"
+    var released: String = "No Release Date"
+    var director: String = "No director"
+    var imdbRating: String = "N/A"
+    var tomatoMeter: String = "N/A"
+    var plot: String = "No Plot"
     
     var attemptedToDownloadImage = false
     var movieImageDelegate: MovieImageDelegate?
@@ -52,6 +57,14 @@ final class Movie {
     
     // TODO: Instruction #4, create the updateFilmInfo(_:) method
     
+    func updateFilmInfo(_ response: [String: String]) {
+        rated = response["Rated"] ?? "N/A"
+        released = response["Released"] ?? "N/A"
+        director = response["Director"] ?? "N/A"
+        imdbRating = response["imdbRating"] ?? "N/A"
+        tomatoMeter = response["tomatoMeter"] ?? "N/A"
+        plot = response["Plot"] ?? "N/A"
+    }
 }
 
 
