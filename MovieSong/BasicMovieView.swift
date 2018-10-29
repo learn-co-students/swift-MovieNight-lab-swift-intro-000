@@ -46,13 +46,13 @@ final class BasicMovieView: UIView {
     }
     
     func commonInit() {
-        NSBundle.mainBundle().loadNibNamed("BasicMovieView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("BasicMovieView", owner: self, options: nil)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
-        contentView.leftAnchor.constraintEqualToAnchor(self.leftAnchor).active = true
-        contentView.rightAnchor.constraintEqualToAnchor(self.rightAnchor).active = true
-        contentView.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor).active = true
-        contentView.topAnchor.constraintEqualToAnchor(self.topAnchor).active = true
+        contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         queue = Queue(imageView: moviePosterImageView)
         setupGestureRecognizer()
     }
@@ -66,12 +66,12 @@ extension BasicMovieView {
     func setupGestureRecognizer() {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
         gestureRecognizer.numberOfTapsRequired = 1
-        moviePosterImageView.userInteractionEnabled = true
+        moviePosterImageView.isUserInteractionEnabled = true
         moviePosterImageView.addGestureRecognizer(gestureRecognizer)
     }
     
     func imageViewTapped() {
-        movieSelectedDelegate?.movieSelected(movie)
+        movieSelectedDelegate?.movieSelected(movie: movie)
     }
     
 }
@@ -85,7 +85,7 @@ extension BasicMovieView {
         moviePosterImageView.layer.removeAllAnimations()
         contentView.layer.removeAllAnimations()
         movieTitleLabel.text = " "
-        moviePosterImageView.image = UIImage(imageLiteral: "Nothing")
+        moviePosterImageView.image = UIImage(named: "Nothing")
     }
     
 }
@@ -101,8 +101,8 @@ extension BasicMovieView: MovieImageDelegate {
             
             let images = (1...8).map { index -> UIImage in
                 let imageName = "Loading" + String(index)
-                let image = UIImage(imageLiteral: imageName)
-                return image
+                let image = UIImage(named: imageName)
+                return image!
             }
         
             for i in images {
@@ -113,13 +113,13 @@ extension BasicMovieView: MovieImageDelegate {
             queue.addOperation(self.moviePosterImageView.image = image, duration: 0.6)
         case .Downloaded(let image):
             // TODO: No longer is there this list of random animations, you should clean this up.
-            let animations: [UIViewAnimationOptions] = [.TransitionCurlDown]
+            let animations: [UIViewAnimationOptions] = [.transitionCurlDown]
             let randomIndex = Int(arc4random_uniform(UInt32(animations.count)))
             let randomAnimation = animations[randomIndex]
             queue.addOperation(self.moviePosterImageView.image = image, animation: randomAnimation, duration: 0.8)
         case .Nothing:
-            let image = UIImage(imageLiteral: "Nothing")
-            queue.addOperation(self.moviePosterImageView.image = image, animation: .TransitionCrossDissolve, duration: 0.1)
+            let image = UIImage(named: "Nothing")
+            queue.addOperation(self.moviePosterImageView.image = image, animation: .transitionCrossDissolve, duration: 0.1)
         }
     }
     

@@ -18,8 +18,20 @@ protocol MovieImageDelegate {
 final class Movie {
     
     // TODO: Instruction #1, create instance properties
-
+    var title: String
+    var year: String
+    var imdbID: String
+    var posterURLString: String?
+    
     // TODO: Instruction #4, create more instance properties
+    
+    var hasFullInfo: Bool = false
+    var rated: String = "No rating"
+    var released: String = "No Release Date"
+    var director: String = "No director"
+    var imdbRating: String = "N/A"
+    var tomatoMeter: String = "N/A"
+    var plot: String = "No Plot"
     
     var attemptedToDownloadImage = false
     var movieImageDelegate: MovieImageDelegate?
@@ -32,18 +44,34 @@ final class Movie {
     }
     
     
-    // TODO: Instruction #2, create Initializer 
-
+    // TODO: Instruction #2, create Initializer
+    
+    init(movieJSON: [String: String]) {
+        self.title = movieJSON["Title"] ?? "No Title"
+        self.year = movieJSON["Year"] ?? "No Year"
+        self.imdbID = movieJSON["imdbID"] ?? "No imdbID"
+        if let moviePosterURL = movieJSON["Poster"] {
+            self.posterURLString = moviePosterURL
+        }
+    }
     
     // TODO: Instruction #4, create the updateFilmInfo(_:) method
     
+    func updateFilmInfo(_ response: [String: String]) {
+        rated = response["Rated"] ?? "N/A"
+        released = response["Released"] ?? "N/A"
+        director = response["Director"] ?? "N/A"
+        imdbRating = response["imdbRating"] ?? "N/A"
+        tomatoMeter = response["tomatoMeter"] ?? "N/A"
+        plot = response["Plot"] ?? "N/A"
+    }
 }
 
 
 // MARK: Image Methods
 extension Movie {
     
-    private func retrieveImage() -> UIImage? {
+    fileprivate func retrieveImage() -> UIImage? {
         switch imageState {
         case .Loading(let image):
             if shouldKickOffImageDownload { downloadImage() }
@@ -83,10 +111,10 @@ extension Movie {
     }
     
     func downloadImage(withURL URL: NSURL) {
-        let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         
-        defaultSession.dataTaskWithURL(URL) { data, response, error in
-            dispatch_async(dispatch_get_main_queue(),{
+        defaultSession.dataTask(with: URL as URL) { data, response, error in
+            DispatchQueue.main.async {
                 if error != nil || data == nil { self.noImage() }
                 if data != nil {
                     let image = UIImage(data: data!)
@@ -96,11 +124,11 @@ extension Movie {
                         self.imageState = .Downloaded(image!)
                     }
                 }
-            })
+            }
             }.resume()
     }
     
-    private func shouldKickOffTheDownload() -> Bool {
+    fileprivate func shouldKickOffTheDownload() -> Bool {
         switch (imageState, attemptedToDownloadImage) {
         case (.Loading(_), false): return true
         case (.Nothing, false): return true
@@ -114,25 +142,28 @@ extension Movie {
 // MARK: Update Info
 extension Movie {
     
-    func updateInfo(handler handler: (Bool) -> Void) throws {
+    func updateInfo(handler: @escaping (Bool) -> Void) throws {
         
-        let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
 
-        guard let urlString = imdbID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        guard let urlString = imdbID.addingPercentEncoding(withAllowedCharacters: (NSCharacterSet.urlQueryAllowed))
             else { throw MovieError.BadSearchString("Unable to encode \(title) to use within our search.") }
         
         guard let searchURL = NSURL(string: "http://www.omdbapi.com/?i=\(urlString)&plot=full&r=json&tomatoes=true")
             else { throw MovieError.BadSearchURL("Unable to create URL with the search term: \(title)") }
         
-        defaultSession.dataTaskWithURL(searchURL) { [unowned self] data, response, error in
-            dispatch_async(dispatch_get_main_queue(),{
+        defaultSession.dataTask(with: searchURL as URL) { [unowned self] data, response, error in
+            DispatchQueue.main.async(execute: {
                 if error != nil { handler(false) }
                 if data == nil { handler(false) }
                 
-                guard let jsonResponse = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! JSONResponseDictionary
+                guard let jsonResponse = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! JSONResponseDictionary
                     else { handler(false); return }
                             
-                self.updateFilmInfo(jsonResponse)
+             //   self.updateInfo(handler: jsonResponse)
+                
+                print("jsonResponse = \(jsonResponse)")
+
             
                 self.hasFullInfo = true
 
